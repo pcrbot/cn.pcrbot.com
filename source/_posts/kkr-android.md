@@ -1,6 +1,7 @@
 ---
 title: 可可萝·Android
 date: 2020-01-01T00:00:00.000Z
+cover: /images/banner-kokkoro.jpg
 ---
 
 （已停止维护）
