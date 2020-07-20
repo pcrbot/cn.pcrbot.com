@@ -1,0 +1,3 @@
+[submodule "themes/flex-block"]
+	path = themes/flex-block
+	url = https://github.com/miiiku/flex-block.git
