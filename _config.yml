@@ -123,3 +123,9 @@ theme_config:
   social_icon:
     header_enable: false
     footer_enable: false
+
+deploy:
+  type: git
+  repo: git@github.com:pcrbot/www.pcrbot.com.git
+  branch: gh-pages
+  message: "auto deploy {{ now('YYYY-MM-DD HH:mm:ss') }}"
