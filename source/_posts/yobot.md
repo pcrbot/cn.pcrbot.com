@@ -1,7 +1,7 @@
 ---
 title: yobot
 date: 2020-01-01T00:00:00.101Z
-cover: /images/banner-ayumi.jpg
+cover: https://img.yobot.win/pcrbot/banner-ayumi.jpg
 ---
 
 ## 来源
