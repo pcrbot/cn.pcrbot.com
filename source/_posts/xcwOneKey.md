@@ -24,6 +24,9 @@ jjc查询
 
 [详细功能介绍](https://xcw.pcrbotlink.top/help.html)
 
+[视频安装教程](https://www.bilibili.com/video/av244231755)
 
 [下载链接&安装教程](https://github.com/pcrbot/xcwbot-installer)
+
+[备用下载链接](https://www.bilibili.com/read/cv7078362)
 
