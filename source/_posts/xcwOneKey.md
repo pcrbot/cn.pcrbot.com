@@ -18,9 +18,8 @@ cover: https://img.yobot.win/pcrbot/banner-little-lyrical.jpg
 jjc查询  
 公会排名查询  
 我问你答  
-哔哩哔哩动画订阅   
+哔哩哔哩动画订阅  
 等等...
-
 
 [详细功能介绍](https://xcw.pcrbotlink.top/help.html)
 
@@ -29,4 +28,3 @@ jjc查询
 [下载链接&安装教程](https://github.com/pcrbot/xcwbot-installer)
 
 [备用下载链接](https://www.bilibili.com/read/cv7078362)
-
