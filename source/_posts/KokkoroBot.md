@@ -10,7 +10,7 @@ cover: https://img.yobot.win/pcrbot/banner-kokkoro.jpg
 
 交流群：887897168
 
-Tomon（国内无墙） 体验服务器：[邀请链接](https://beta.tomon.co/invite/BN9w4C?t=3TYgtA)
+Tomon（国内无墙） 体验服务器：[邀请链接](https://beta.tomon.co/invite/kCA4Qg?t=htMviz)
 
 Discord（国外有墙） 体验服务器：[邀请链接](https://discord.gg/wgSPby)
 
