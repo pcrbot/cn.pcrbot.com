@@ -2,11 +2,12 @@
 title: KokkoroBot 跨平台机器人
 date: 2020-08-16T00:00:00.100Z
 cover: https://img.yobot.win/pcrbot/banner-kokkoro.jpg
+author: zzbslayer
 ---
 
 ## 来源
 
-源码：<https://github.com/zzbslayer/KokkoroBot-Multi-Platform.git>  
+源码：<https://github.com/zzbslayer/KokkoroBot-Multi-Platform>
 
 交流群：887897168
 
@@ -32,7 +33,8 @@ Discord（国外有墙） 体验服务器：[邀请链接](https://discord.gg/wg
 
 基于 HoshinoBot 进行开发，几乎完整保留了 HoshinoBot 中的接口，微调了其中部分内容，重新设计底层代码，使该项目能够同时**适配多个平台**。原来 HoshinoBot 的插件只需要经过简单微调即可在 KokkoroBot 中使用。
 
-目前已兼容 
+目前已兼容
+
 - Tomon(国内平台)
 - Discord
 - Telegram
