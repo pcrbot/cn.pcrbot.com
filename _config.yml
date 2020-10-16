@@ -100,7 +100,7 @@ theme_config:
     HOME: /
     GitHub: https://github.com/pcrbot
     投稿: https://github.com/pcrbot/www.pcrbot.com/new/master/source/_posts/0?filename=new_post_name.md&value=---%0Atitle%3A+%E6%97%A0%E6%A0%87%E9%A2%98%0Aauthor%3A+%E6%9C%AA%E7%9F%A5%E4%BD%9C%E8%80%85%0A---%0A%0A%E5%9C%A8%E6%AD%A4%E4%BD%BF%E7%94%A8+markdown+%E7%BC%96%E5%86%99%E5%86%85%E5%AE%B9
-  banner: https://img.yobot.win/pcrbot/banner-maho.jpg
+  banner: /images/banner-maho.jpg
   large_legnth:
     long: 20
     short: 5

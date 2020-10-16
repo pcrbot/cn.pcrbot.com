@@ -2,7 +2,7 @@
 title: yobot 离职报告
 author: zyujs
 date: 2020-08-24 12:00:00
-cover: https://img.yobot.win/pcrbot/banner-ayumi.jpg
+cover: /images/banner-ayumi.jpg
 ---
 
 ## 会战/离职报告生成器

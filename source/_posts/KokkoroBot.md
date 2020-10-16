@@ -1,7 +1,7 @@
 ---
 title: KokkoroBot 跨平台机器人
 date: 2020-08-16T00:00:00.100Z
-cover: https://img.yobot.win/pcrbot/banner-kokkoro.jpg
+cover: /images/banner-kokkoro.jpg
 author: zzbslayer
 ---
 

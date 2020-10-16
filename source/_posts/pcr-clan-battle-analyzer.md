@@ -1,7 +1,7 @@
 ---
 title: 工会战数据分析
 date: 2020-10-02T00:00:00.100Z
-cover: https://img.yobot.win/pcrbot/banner-ayumi.jpg
+cover: /images/banner-ayumi.jpg
 ---
 
 利用 yobot api 进行公会战数据分析

@@ -4,7 +4,7 @@ date: 2020-08-15 12:00:00
 subtitle:
 categories:
 tags:
-cover: https://img.yobot.win/pcrbot/banner-misato.jpg
+cover: /images/banner-misato.jpg
 ---
 
 （社区作品）

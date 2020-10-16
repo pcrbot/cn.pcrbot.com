@@ -2,7 +2,7 @@
 title: NFSP 插件合集
 date: 2020-08-15 12:00:00
 author: NFSP
-cover: https://img.yobot.win/pcrbot/banner-hatsune.jpg
+cover: /images/banner-hatsune.jpg
 ---
 
 几个 HoshinoBot 插件

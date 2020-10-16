@@ -1,7 +1,7 @@
 ---
 title: HoshinoBot
 date: 2020-01-01T00:00:00.100Z
-cover: https://img.yobot.win/pcrbot/banner-chieru.jpg
+cover: /images/banner-chieru.jpg
 ---
 
 ## 来源

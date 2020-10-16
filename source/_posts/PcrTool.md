@@ -1,7 +1,7 @@
 ---
 title: pcrtool
 date: 2020-01-01T00:00:00.000Z
-cover: https://img.yobot.win/pcrbot/banner-suzuna.jpg
+cover: /images/banner-suzuna.jpg
 ---
 
 ## 来源

@@ -4,7 +4,7 @@ date: 2020-07-22 22:00:00
 subtitle:
 categories:
 tags:
-cover: https://img.yobot.win/pcrbot/banner-mimi.jpg
+cover: /images/banner-mimi.jpg
 ---
 
 （社区作品）
@@ -14,5 +14,5 @@ cover: https://img.yobot.win/pcrbot/banner-mimi.jpg
 源码与使用说明：<https://github.com/shkongzhu/yowhite>
 
 效果图：
-![效果图](https://img.yobot.win/pcrbot/yowhite-index.png)
-![效果图](https://img.yobot.win/pcrbot/yowhite-stat.png)
+![效果图](/images/yowhite-index.png)
+![效果图](/images/yowhite-stat.png)

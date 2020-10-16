@@ -4,7 +4,7 @@ date: 2020-07-22 12:00:00
 subtitle:
 categories:
 tags:
-cover: https://img.yobot.win/pcrbot/banner-little-lyrical.jpg
+cover: /images/banner-little-lyrical.jpg
 ---
 
 （社区作品）
@@ -14,4 +14,4 @@ cover: https://img.yobot.win/pcrbot/banner-little-lyrical.jpg
 源码与使用说明：<https://github.com/A-kirami/YoCool>
 
 效果图：
-![效果图](https://img.yobot.win/pcrbot/yocool-kokkoro.png)
+![效果图](/images/yocool-kokkoro.png)
