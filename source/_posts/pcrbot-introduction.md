@@ -18,20 +18,8 @@ cover: /images/banner-misato.jpg
 
 由于**HoshinoBot 自身部署教程已过时**，这里提供一种部署方式：
 
-<!--
-### 准备工作
-
-- 一个服务器（家庭、学校、公司的宽带一般没有公网不建议使用）
-- 一个域名（如果服务器在大陆区域，那么域名必须备案。港澳台与境外服务器可以不用备案）
-
-### 部署环境
-
-（以下教程均以 Linux 服务器为例）
-
-HoshinoBot 运行环境为 `python3.8` 以上
--->
-
-[社区部署教程](https://blog.di.he.cn/2020/09/22/deploy-a-priconne-bot-on-linux/)
+[公主连结bot部署完全教程](https://blog.di.he.cn/2020/09/22/deploy-a-priconne-bot-on-linux/)  
+[利用docker部署公主连结bot](./depoly-with-docker.md)
 
 ## 获取更多插件
 
@@ -39,4 +27,4 @@ HoshinoBot 拥有大量的社区插件，这些插件一般发布在 [pcrbot 组
 
 ## 编写插件
 
-HoshinoBot 可以让使用者很轻松地编写自己地插件，可以参考 [HoshinoBot 开发指南（社区版）](https://github.com/pcrbot/hoshinobot-development-documentation)
+HoshinoBot 可以让使用者很轻松地编写自己地插件，可以参考 [HoshinoBot 开发指南（社区版）](https://github.com/pcrbot/hoshinobot-development-documentation/blob/master/README.md)
