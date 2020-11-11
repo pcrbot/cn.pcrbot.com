@@ -211,7 +211,7 @@ vim gocqhttp_data/config.json
 ```sh
 # 启动 gocqhttp 并将数据存放在当前目录下 gocqhttp_data 文件夹
 # 注意这里使用的是 `-it` 因为可能会出现登录验证需要交互处理
-docker run -it -v ${PWD}/gocqhttp_data:/data --name gocqhttp --network qqbot gocqhttp
+docker run -it -v ${PWD}/gocqhttp_data:/data -v ${PWD}/Hoshino/res:/HoshinoBot/res --name gocqhttp --network qqbot gocqhttp
 # 启动后，如果出现登录验证，请按照提示进行验证。
 ```
 
