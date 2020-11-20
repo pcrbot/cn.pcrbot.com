@@ -98,7 +98,7 @@ rm hyg.tar
 
 #### 配置 HoshinoBot
 
-```sh
+```bash
 # 取出 HoshinoBot 源码到当前目录
 docker run --rm -v ${PWD}:/tmp/Hoshino hoshinobot mv /HoshinoBot/ /tmp/Hoshino/Hoshino
 
@@ -112,14 +112,14 @@ vim Hoshino/hoshino/config/__bot__.py
 
 配置文件中，需要将 `HOST` 设置为 `0.0.0.0`，`SUPERUSERS` 设置为主人的QQ号，其他部分可按注释自行编辑。
 
-```sh
+```bash
 # 启动 HoshinoBot
 docker run -d -v ${PWD}/Hoshino:/HoshinoBot --name hoshino --network qqbot hoshinobot
 ```
 
 #### 配置 yobot
 
-```sh
+```bash
 # 创建 yobot 配置文件
 mkdir yobot_data
 touch yobot_data/yobot_config.json
@@ -138,14 +138,14 @@ vim yobot_data/yobot_config.json
 
 启动 yobot
 
-```sh
+```bash
 # 启动 yobot 并将数据存放在当前目录下 yobot_data 文件夹
 docker run -d -v ${PWD}/yobot_data:/yobot/yobot_data --name yobot --network qqbot yobot/yobot
 ```
 
 #### 配置 gocqhttp
 
-```sh
+```bash
 # 生成配置文件，并将数据存放在当前目录下 gocqhttp_data 文件夹
 docker run --rm -v ${PWD}/gocqhttp_data:/data gocqhttp
 
@@ -208,7 +208,7 @@ vim gocqhttp_data/config.json
 
 修改完毕，启动 gocqhttp
 
-```sh
+```bash
 # 启动 gocqhttp 并将数据存放在当前目录下 gocqhttp_data 文件夹
 # 注意这里使用的是 `-it` 因为可能会出现登录验证需要交互处理
 docker run -it -v ${PWD}/gocqhttp_data:/data -v ${PWD}/Hoshino/res:/HoshinoBot/res --name gocqhttp --network qqbot gocqhttp
@@ -232,7 +232,7 @@ docker run -it -v ${PWD}/gocqhttp_data:/data -v ${PWD}/Hoshino/res:/HoshinoBot/r
 
 如果你的 Nginx 不在容器内，则无法自动获取 yobot 地址，需要手动查询地址，记下此 IP 填写到 nginx 配置文件中
 
-```sh
+```bash
 # 查看 yobot 容器的 IP
 docker inspect yobot | grep IPAddress
 ```
@@ -291,7 +291,7 @@ server {
 
 重新加载 nginx 配置
 
-```sh
+```bash
 nginx -s reload
 ```
 
@@ -316,7 +316,7 @@ example.com {  # 此处修改为你的域名
 
 使用 docker 启动 caddy
 
-```sh
+```bash
 docker run -d -v ${PWD}/Caddyfile:/etc/caddy/Caddyfile --name caddy --network qqbot -p 80:80 -p 443:443 caddy
 ```
 
@@ -324,4 +324,4 @@ docker run -d -v ${PWD}/Caddyfile:/etc/caddy/Caddyfile --name caddy --network qq
 
 ### 添加更多 Hoshino 插件
 
-编写中……
+HoshinoBot 有很多社区插件，可以在[插件索引](https://github.com/pcrbot/HoshinoBot-plugins-index/blob/master/README.md)中查看，安装插件方法请参考插件自身的介绍页。
