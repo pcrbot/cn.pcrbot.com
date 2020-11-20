@@ -6,6 +6,10 @@ cover: /images/banner-shizuru.jpg
 
 ## 前言
 
+**不推荐**使用 Docker 部署 `HoshinoBot`，因为 `HoshinoBot` 与 `gocqhttp` 需要通过文件系统传递一些数据且没有统一标准，一些社区插件对这一行为采取了不同的措施，使用 Docker 部署会导致这些插件出现预料意外的结果。
+
+推荐参考[这篇教程](https://blog.di.he.cn/2020/09/22/deploy-a-priconne-bot-on-linux/)进行普通部署。
+
 ### 什么是 Docker
 
 Docker 是一种容器方案，将多个运行环境分离，就像虚拟机一样，但原理不同。容器比虚拟机更轻便，只将环境隔离并不需要虚拟硬件，性能损耗极小。
