@@ -6,10 +6,6 @@ cover: /images/banner-shizuru.jpg
 
 ## 前言
 
-**不推荐**使用 Docker 部署 `HoshinoBot`，因为 `HoshinoBot` 与 `gocqhttp` 需要通过文件系统传递一些数据且没有统一标准，一些社区插件对这一行为采取了不同的措施，使用 Docker 部署会导致这些插件出现预料意外的结果。
-
-推荐参考[这篇教程](https://blog.di.he.cn/2020/09/22/deploy-a-priconne-bot-on-linux/)进行普通部署。
-
 ### 什么是 Docker
 
 Docker 是一种容器方案，将多个运行环境分离，就像虚拟机一样，但原理不同。容器比虚拟机更轻便，只将环境隔离并不需要虚拟硬件，性能损耗极小。
@@ -22,7 +18,7 @@ Docker 是一种容器方案，将多个运行环境分离，就像虚拟机一�
 
 - 一个服务器（家庭、学校、公司的宽带一般没有公网不建议使用）
 - 一个域名（如果服务器在大陆区域，那么域名必须备案。港澳台与境外服务器可以不用备案）
-- 将一个域名指向你的服务器（建议使用一个二级域名）
+- 将一到两个域名指向你的服务器（yobot 使用一个域名，HoshinoBot 的第三方插件可能需要一个域名）
 
 ## 部署教程
 
@@ -56,7 +52,7 @@ sudo usermod -aG docker myname  # 将 myname 替换为自己的用户名
 ```bash
 # Ubuntu / Debian
 sudo apt install -y wget vim
-# Centos / RHEL
+# CentOS / RHEL
 sudo yum install -y wget vim
 ```
 
@@ -65,6 +61,16 @@ sudo yum install -y wget vim
 > 如果要在本地修改文件，请尽量不要使用 Windows 自带的记事本，请先安装编程专用文本编辑器，比如这个：[点击下载notepad3](http://pan.yobot.win/share/Windows%E5%B7%A5%E5%85%B7/Notepad3.exe)
 
 ### 部署过程
+
+#### 准备一个随机密钥
+
+你可以用任何方式生成一个随机字符串，比如
+
+```bash
+openssl rand -base64 12
+```
+
+请记下这个密钥，后面会用到
 
 #### 准备 Docker
 
@@ -86,7 +92,7 @@ cd ~/qqbot
 
 ```bash
 # 下载镜像包
-wget https://down.yu.al/others/qqbot/hoshino/hyg.tar.gz
+wget https://down.yobot.club/images/hyg.tar.gz
 
 # 解压，此处使用 gzip，只解压一层获取 tar 文件
 gzip -d hyg.tar.gz
@@ -98,7 +104,7 @@ docker load -i hyg.tar
 rm hyg.tar
 ```
 
-此时可使用 `docker images` 指令查看已导入的镜像，此镜像包中包含了 `hoshinobot`、`yobot/yobot`、`gocqhttp`、`caddy` 四个镜像
+此时可使用 `docker images` 指令查看已导入的镜像，此镜像包中包含了 `hoshinobot`、`yobot/yobot:pypy`、`gocqhttp:0.9.31-fix2`、`caddy` 四个镜像
 
 #### 配置 HoshinoBot
 
@@ -106,7 +112,8 @@ rm hyg.tar
 # 取出 HoshinoBot 源码到当前目录
 docker run --rm -v ${PWD}:/tmp/Hoshino hoshinobot mv /HoshinoBot/ /tmp/Hoshino/Hoshino
 
-# 如果使用的是非 root 用户，修改这些归属
+# 如果使用的是非 root 用户，需要修改这些归属
+# root 用户可跳过此句
 sudo chown -R myname Hoshino  # 将 myname 替换为自己的用户名
 
 # 修改 HoshinoBot 配置文件
@@ -114,7 +121,13 @@ vim Hoshino/hoshino/config/__bot__.py
 # 如果你不太熟悉 vim，也可以将文件取回本地后修改
 ```
 
-配置文件中，需要将 `HOST` 设置为 `0.0.0.0`，`SUPERUSERS` 设置为主人的QQ号，其他部分可按注释自行编辑。
+配置文件中，需要修改下面三个字段，其他部分可按注释自行编辑。
+
+```python
+HOST = '0.0.0.0'
+ACCESS_TOKEN = 'xxxxxx'  # 此处填写刚才生成的密钥
+SUPERUSERS = ['000000']  # 此处填写主人的QQ号
+```
 
 ```bash
 # 启动 HoshinoBot
@@ -123,28 +136,17 @@ docker run -d -v ${PWD}/Hoshino:/HoshinoBot --name hoshino --network qqbot hoshi
 
 #### 配置 yobot
 
-```bash
-# 创建 yobot 配置文件
-mkdir yobot_data
-touch yobot_data/yobot_config.json
-
-# 编辑 yobot 配置文件
-vim yobot_data/yobot_config.json
-```
-
-配置文件中填写如下内容，其中的值替换为你自己的域名
-
-```json
-{
-    "public_address": "https://your-own-domain-here.com/"
-}
-```
-
 启动 yobot
 
 ```bash
 # 启动 yobot 并将数据存放在当前目录下 yobot_data 文件夹
-docker run -d -v ${PWD}/yobot_data:/yobot/yobot_data --name yobot --network qqbot yobot/yobot
+docker run -d \
+           -v ${PWD}/yobot_data:/yobot/yobot_data \
+           -e YOBOT_PUBLIC_ADDRESS="https://your-own-domain-here.com/" \  # 将域名改为你自己的域名
+           -e YOBOT_ACCESS_TOKEN="xxxxxx" \  # 此处填写刚才生成的密钥
+           --name yobot \
+           --network qqbot \
+           yobot/yobot:pypy
 ```
 
 #### 配置 gocqhttp
@@ -154,13 +156,16 @@ docker run -d -v ${PWD}/yobot_data:/yobot/yobot_data --name yobot --network qqbo
 docker run --rm -v ${PWD}/gocqhttp_data:/data gocqhttp
 
 # 如果使用的是非 root 用户，修改这些归属
+# root 用户可跳过此句
 sudo chown -R myname gocqhttp_data  # 将 myname 替换为自己的用户名
 
 # 修改 gocqhttp 配置文件
-vim gocqhttp_data/config.json
+vim gocqhttp_data/config.hjson
 ```
 
-这里我们需要修改如下的部分，对照下面的注释修改，请注意不要复制注释
+这里我们需要修改如下的部分，对照下面的注释修改
+
+> `go-cqhttp` 使用了 `hjson` 格式的配置文件，所以格式更加随意，不必感到困惑
 
 ```json
 {
@@ -169,7 +174,7 @@ vim gocqhttp_data/config.json
   "encrypt_password": false,
   "password_encrypted": "",
   "enable_db": false,
-  "access_token": "",
+  "access_token": "xxxxxx",  // 此处填写刚才生成的密钥
   "relogin": {
     "enabled": true,
     "relogin_delay": 3,
@@ -183,6 +188,7 @@ vim gocqhttp_data/config.json
   "post_message_format": "string",
   "ignore_invalid_cqcode": false,
   "force_fragmented": true,
+  "use_sso_address": false,
   "heartbeat_interval": 5,
   "http_config": {
     "enabled": false
@@ -197,7 +203,7 @@ vim gocqhttp_data/config.json
     // 第一个连接，连接到 hoshinobot
     {
       "enabled": true,
-      "reverse_url": "ws://hoshino:8080/ws/",  // 可以填写容器名
+      "reverse_url": "ws://hoshino:8080/ws/",  // ip 用容器名即可
       "reverse_reconnect_interval": 3000
     },
     // 第二个连接，连接到 yobot
@@ -213,9 +219,14 @@ vim gocqhttp_data/config.json
 修改完毕，启动 gocqhttp
 
 ```bash
-# 启动 gocqhttp 并将数据存放在当前目录下 gocqhttp_data 文件夹
+# 启动 gocqhttp 并将数据存放在当前目录下 gocqhttp_data 文件夹，同时挂载整个 /HoshinoBot 以共享静态资源
 # 注意这里使用的是 `-it` 因为可能会出现登录验证需要交互处理
-docker run -it -v ${PWD}/gocqhttp_data:/data -v ${PWD}/Hoshino/res:/HoshinoBot/res --name gocqhttp --network qqbot gocqhttp
+docker run -it \
+           -v ${PWD}/gocqhttp_data:/data \
+           -v ${PWD}/Hoshino:/HoshinoBot \
+           --name gocqhttp \
+           --network qqbot \
+           gocqhttp:0.9.31-fix2
 # 启动后，如果出现登录验证，请按照提示进行验证。
 ```
 
@@ -230,15 +241,20 @@ docker run -it -v ${PWD}/gocqhttp_data:/data -v ${PWD}/Hoshino/res:/HoshinoBot/r
 如果你已经安装过 `nginx`，请阅读下方 nginx 部分  
 如果你尚未安装 `nginx` 或其他网络服务器，请阅读下方 caddy 部分
 
+这里的例子只给出 yobot 的代理方法，如需代理 HoshinoBot 则用换一个域名再操作一次即可。
+
 ##### Nginx 反向代理
 
-请事先准备好 SSL 证书（不会申请的话，建议换后面的 caddy 自动申请）
+如果你已经安装过 `nginx`，请参考此部分，并忽略下方 caddy 部分
+
+请事先准备好 SSL 证书
 
 如果你的 Nginx 不在容器内，则无法自动获取 yobot 地址，需要手动查询地址，记下此 IP 填写到 nginx 配置文件中
 
 ```bash
-# 查看 yobot 容器的 IP
+# 查看 yobot 容器的 ip
 docker inspect yobot | grep IPAddress
+# 记下这个 ip，稍后会使用
 ```
 
 请在已有的 nginx 配置文件中加入以下内容
@@ -282,7 +298,7 @@ server {
 
     location /
     {
-        proxy_pass http://yobot:9222;  # 反向代理，如果你的 Nginx 不在容器中，请将此 `yobot` 替换为刚刚查询到的 IP 地址
+        proxy_pass http://yobot:9222;  # 反向代理，请将此 `yobot` 替换为刚刚查询到的 IP 地址
         proxy_set_header X-Real-IP $remote_addr;  # 传递用户IP
     }
 
@@ -290,6 +306,10 @@ server {
     location /ws/ {
         deny all;
     }
+
+    # 日志记录
+    # access_log /var/log/nginx/yobot.log;
+    # error_log /var/log/nginx/yobot.error.log;
 }
 ```
 
@@ -329,3 +349,14 @@ docker run -d -v ${PWD}/Caddyfile:/etc/caddy/Caddyfile --name caddy --network qq
 ### 添加更多 Hoshino 插件
 
 HoshinoBot 有很多社区插件，可以在[插件索引](https://github.com/pcrbot/HoshinoBot-plugins-index/blob/master/README.md)中查看，安装插件方法请参考插件自身的介绍页。
+
+注意：在安装依赖时，需要使用 `pip3`，我们需要改为 `docker exec hoshinobot pip3`
+
+（可选）我们也可以为这个命令设置一个别名方便记忆
+
+```bash
+# 为这一长串命令设置一个临时别名
+alias hsn-pip3='docker exec hoshinobot pip3'
+```
+
+（可选）将其写入 `~/.bashrc` 结尾，即可永久生效
