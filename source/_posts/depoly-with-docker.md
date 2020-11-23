@@ -44,16 +44,7 @@ rm get-docker.sh
 # 如果使用的是非 root 用户，需要将自己加入 docker 组中，可能需要重新登录后才能获取权限
 # （使用非 root 用户进行日常操作是个好习惯）
 # 使用 root 的勇士可以无视下面这个步骤
-sudo usermod -aG docker myname  # 将 myname 替换为自己的用户名
-```
-
-#### 安装其他工具
-
-```bash
-# Ubuntu / Debian
-sudo apt install -y wget vim
-# CentOS / RHEL
-sudo yum install -y wget vim
+sudo usermod -aG docker $(whoami)
 ```
 
 > 关于文本编辑器，我个人推荐使用更全能的 ssh 工具，在本地完成文本编辑任务。vim 适合以前没有鼠标、没有组合快捷键的年代，不过现在已经有更好的选择了。
@@ -90,9 +81,23 @@ cd ~/qqbot
 
 #### 下载并导入镜像
 
+拉取镜像
+
+```bash
+docker pull docker.pcr.works/hoshinobot
+docker pull docker.pcr.works/gocqhttp:0.9.31-fix2
+docker pull yobot/yobot:pypy
+docker pull caddy
+```
+
+如果国内服务器连接 Docker 速度较慢，可以改用下面的方法
+
+<details>
+  <summary>国内加速方法（点击展开）</summary>
+
 ```bash
 # 下载镜像包
-wget https://down.yobot.club/images/hyg.tar.gz
+wget https://down.yu.al/ting/bucket/4504D09A39C9C842F2BEC15F5D078408 -O hyg.tar.gz
 
 # 解压，此处使用 gzip，只解压一层获取 tar 文件
 gzip -d hyg.tar.gz
@@ -104,17 +109,19 @@ docker load -i hyg.tar
 rm hyg.tar
 ```
 
-此时可使用 `docker images` 指令查看已导入的镜像，此镜像包中包含了 `hoshinobot`、`yobot/yobot:pypy`、`gocqhttp:0.9.31-fix2`、`caddy` 四个镜像
+</details>
+
+此时可使用 `docker images` 指令查看已导入的镜像，此镜像包中包含了 `docker.pcr.works/hoshinobot`、`yobot/yobot:pypy`、`docker.pcr.works/gocqhttp:0.9.31-fix2`、`caddy` 四个镜像
 
 #### 配置 HoshinoBot
 
 ```bash
 # 取出 HoshinoBot 源码到当前目录
-docker run --rm -v ${PWD}:/tmp/Hoshino hoshinobot mv /HoshinoBot/ /tmp/Hoshino/Hoshino
+docker run --rm -v ${PWD}:/tmp/Hoshino docker.pcr.works/hoshinobot mv /HoshinoBot/ /tmp/Hoshino/Hoshino
 
 # 如果使用的是非 root 用户，需要修改这些归属
 # root 用户可跳过此句
-sudo chown -R myname Hoshino  # 将 myname 替换为自己的用户名
+sudo chown -R $(whoami) Hoshino
 
 # 修改 HoshinoBot 配置文件
 vim Hoshino/hoshino/config/__bot__.py
@@ -131,7 +138,7 @@ SUPERUSERS = ['000000']  # 此处填写主人的QQ号
 
 ```bash
 # 启动 HoshinoBot
-docker run -d -v ${PWD}/Hoshino:/HoshinoBot --name hoshino --network qqbot hoshinobot
+docker run -d -v ${PWD}/Hoshino:/HoshinoBot --name hoshino --network qqbot docker.pcr.works/hoshinobot
 ```
 
 #### 配置 yobot
@@ -153,11 +160,11 @@ docker run -d \
 
 ```bash
 # 生成配置文件，并将数据存放在当前目录下 gocqhttp_data 文件夹
-docker run --rm -v ${PWD}/gocqhttp_data:/data gocqhttp
+docker run --rm -v ${PWD}/gocqhttp_data:/data docker.pcr.works/gocqhttp:0.9.31-fix2
 
 # 如果使用的是非 root 用户，修改这些归属
 # root 用户可跳过此句
-sudo chown -R myname gocqhttp_data  # 将 myname 替换为自己的用户名
+sudo chown -R $(whoami) gocqhttp_data
 
 # 修改 gocqhttp 配置文件
 vim gocqhttp_data/config.hjson
@@ -226,7 +233,7 @@ docker run -it \
            -v ${PWD}/Hoshino:/HoshinoBot \
            --name gocqhttp \
            --network qqbot \
-           gocqhttp:0.9.31-fix2
+           docker.pcr.works/gocqhttp:0.9.31-fix2
 # 启动后，如果出现登录验证，请按照提示进行验证。
 ```
 
@@ -275,24 +282,24 @@ server {
     ssl_certificate_key /home/www/ssl/ssl_certificate.key;  # 此处修改为你的私钥路径
 
     # 一些 SSL 安全参数，可以视情况修改
-    ssl_session_timeout 1d;
-    ssl_session_cache shared:MozSSL:1m;  # about 4000 sessions
-    ssl_session_tickets off;
+        ssl_session_timeout 1d;
+        ssl_session_cache shared:MozSSL:1m;  # about 4000 sessions
+        ssl_session_tickets off;
 
-    # curl https://ssl-config.mozilla.org/ffdhe2048.txt > /path/to/dhparam
-    # ssl_dhparam /path/to/dhparam;
+        # curl https://ssl-config.mozilla.org/ffdhe2048.txt > /path/to/dhparam
+        # ssl_dhparam /path/to/dhparam;
 
-    # intermediate configuration
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
-    ssl_prefer_server_ciphers off;
+        # intermediate configuration
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+        ssl_prefer_server_ciphers off;
 
-    # HSTS (ngx_http_headers_module is required) (63072000 seconds)
-    add_header Strict-Transport-Security "max-age=63072000" always;
+        # HSTS (ngx_http_headers_module is required) (63072000 seconds)
+        add_header Strict-Transport-Security "max-age=63072000" always;
 
-    # OCSP stapling
-    ssl_stapling on;
-    ssl_stapling_verify on;
+        # OCSP stapling
+        ssl_stapling on;
+        ssl_stapling_verify on;
 
     # 反向代理
 
