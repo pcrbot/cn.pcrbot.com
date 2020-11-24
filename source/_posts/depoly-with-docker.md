@@ -84,40 +84,24 @@ cd ~/qqbot
 拉取镜像
 
 ```bash
-docker pull docker.pcr.works/hoshinobot
-docker pull docker.pcr.works/gocqhttp:0.9.31-fix2
+docker pull pcrbot/hoshinobot
+docker pull pcrbot/gocqhttp:ffmpeg
 docker pull yobot/yobot:pypy
 docker pull caddy
 ```
 
 如果国内服务器连接 Docker 速度较慢，可以改用下面的方法
 
-<details>
-  <summary>国内加速方法（点击展开）</summary>
-
-```bash
-# 下载镜像包
-wget https://down.yu.al/ting/bucket/4504D09A39C9C842F2BEC15F5D078408 -O hyg.tar.gz
-
-# 解压，此处使用 gzip，只解压一层获取 tar 文件
-gzip -d hyg.tar.gz
-
-# 导入镜像
-docker load -i hyg.tar
-
-# 导入完成，删除镜像包
-rm hyg.tar
-```
-
-</details>
-
-此时可使用 `docker images` 指令查看已导入的镜像，此镜像包中包含了 `docker.pcr.works/hoshinobot`、`yobot/yobot:pypy`、`docker.pcr.works/gocqhttp:0.9.31-fix2`、`caddy` 四个镜像
+[阿里云镜像加速教程](https://help.aliyun.com/document_detail/60750.html)（目前限额免费）
 
 #### 配置 HoshinoBot
 
 ```bash
 # 取出 HoshinoBot 源码到当前目录
-docker run --rm -v ${PWD}:/tmp/Hoshino docker.pcr.works/hoshinobot mv /HoshinoBot/ /tmp/Hoshino/Hoshino
+docker run --rm \
+           -v ${PWD}:/tmp/Hoshino \
+           pcrbot/hoshinobot \
+           mv /HoshinoBot/ /tmp/Hoshino/Hoshino
 
 # 如果使用的是非 root 用户，需要修改这些归属
 # root 用户可跳过此句
@@ -138,7 +122,11 @@ SUPERUSERS = ['000000']  # 此处填写主人的QQ号
 
 ```bash
 # 启动 HoshinoBot
-docker run -d -v ${PWD}/Hoshino:/HoshinoBot --name hoshino --network qqbot docker.pcr.works/hoshinobot
+docker run -d \
+           -v ${PWD}/Hoshino:/HoshinoBot \
+           --name hoshino \
+           --network qqbot \
+           pcrbot/hoshinobot
 ```
 
 #### 配置 yobot
@@ -160,7 +148,9 @@ docker run -d \
 
 ```bash
 # 生成配置文件，并将数据存放在当前目录下 gocqhttp_data 文件夹
-docker run --rm -v ${PWD}/gocqhttp_data:/data docker.pcr.works/gocqhttp:0.9.31-fix2
+docker run --rm \
+           -v ${PWD}/gocqhttp_data:/data \
+           pcrbot/gocqhttp:ffmpeg
 
 # 如果使用的是非 root 用户，修改这些归属
 # root 用户可跳过此句
@@ -233,7 +223,7 @@ docker run -it \
            -v ${PWD}/Hoshino:/HoshinoBot \
            --name gocqhttp \
            --network qqbot \
-           docker.pcr.works/gocqhttp:0.9.31-fix2
+           pcrbot/gocqhttp:ffmpeg
 # 启动后，如果出现登录验证，请按照提示进行验证。
 ```
 
@@ -363,7 +353,12 @@ HoshinoBot 有很多社区插件，可以在[插件索引](https://github.com/pc
 
 ```bash
 # 为这一长串命令设置一个临时别名
-alias hsn-pip3='docker exec hoshinobot pip3'
+alias hpip='docker exec hoshinobot pip3'
 ```
 
 （可选）将其写入 `~/.bashrc` 结尾，即可永久生效
+
+```bash
+# 为这一长串命令设置一个永久别名
+echo "alias hpip='docker exec hoshinobot pip3'" >>~/.bashrc
+```
