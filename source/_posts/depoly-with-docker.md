@@ -322,6 +322,13 @@ nginx -s reload
 
 caddy 使用非常简单，只需创建一个 `Caddyfile`（没有扩展名），填写如下内容
 
+```bash
+# 使用 vim 创建 Caddyfile，也可以用其他你喜欢的方式
+vim ./Caddyfile
+```
+
+编写内容如下
+
 ```caddyfile
 example.com {  # 此处修改为你的域名
 
@@ -338,7 +345,13 @@ example.com {  # 此处修改为你的域名
 使用 docker 启动 caddy
 
 ```bash
-docker run -d -v ${PWD}/Caddyfile:/etc/caddy/Caddyfile --name caddy --network qqbot -p 80:80 -p 443:443 caddy
+docker run -d \
+           -v ${PWD}/Caddyfile:/etc/caddy/Caddyfile \
+           --name caddy \
+           --network qqbot \
+           -p 80:80 \
+           -p 443:443 \
+           caddy
 ```
 
 现在打开浏览器访问你的域名，就能看到 yobot 主页了
@@ -361,4 +374,35 @@ alias hpip='docker exec hoshinobot pip3'
 ```bash
 # 为这一长串命令设置一个永久别名
 echo "alias hpip='docker exec hoshinobot pip3'" >>~/.bashrc
+```
+
+（可选）安装 `hsn` 插件管理器
+
+> 更多信息请参考：<https://github.com/pcrbot/hsn>
+
+```bash
+# 下载 hsn
+wget https://github.com/pcrbot/hsn/releases/download/v0.1.4/hsn-v0.1.4-linux-amd64.tar.gz
+# 国内用户可改为 https://download.fastgit.org/pcrbot/hsn/releases/download/v0.1.4/hsn-v0.1.4-linux-amd64.tar.gz
+
+# 解压
+tar zxvf hsn-v0.1.4-linux-amd64.tar.gz
+
+# 删除压缩包
+rm hsn-v0.1.4-linux-amd64.tar.gz
+
+# 给与运行权限
+chmod +x hsn
+
+# 移动至运行目录
+mv hsn /usr/bin/
+
+# 配置
+hsn set --path=${PWD}/Hoshino
+hsn set -i="https://github.com"
+hsn set --pip="docker exec hoshinobot pip3"
+# 国内用户可改为执行下面这些配置
+# hsn set --path=${PWD}/Hoshino
+# hsn set -i="https://hub.fastgit.org"
+# hsn set --pip="docker exec hoshinobot pip3 -i https://mirrors.aliyun.com/pypi/simple/"
 ```
