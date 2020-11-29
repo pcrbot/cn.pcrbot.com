@@ -330,7 +330,7 @@ example.com {  # 此处修改为你的域名
     }
 
     reverse_proxy * http://yobot:9222 {
-        header_up +X-Real-IP {remote}
+        header_up +X-Real-IP {remote_host}
     }
 }
 ```

@@ -19,7 +19,7 @@ cover: /images/banner-misato.jpg
 由于**HoshinoBot 自身部署教程已过时**，这里提供一种部署方式：
 
 [公主连结bot部署完全教程](https://blog.di.he.cn/2020/09/22/deploy-a-priconne-bot-on-linux/)  
-[利用docker部署公主连结bot](./depoly-with-docker.md)
+[利用docker部署公主连结bot](https://www.pcrbot.com/depoly-with-docker/)
 
 ## 获取更多插件
 
