@@ -313,8 +313,8 @@ vim hoshino/config/__bot__.py
 
 ```bash
 cd ~/HoshinoBot
-wget https://drive.di.he.cn/res.tar.gz
-#微软, 行 !
+# wget https://drive.di.he.cn/res.tar.gz （暂时挂了）
+wget https://download.yobot.win/hoshinobot/res.tar.gz
 tar xf res.tar.gz
 ```
 
@@ -326,7 +326,8 @@ yum -y install fontconfig
 #↑↑↑ Ubuntu 和 Debian 请无视 ↑↑↑
 
 mkdir -p /usr/shared/fonts/chinese
-wget https://drive.di.he.cn/ttc.tar.gz
+# wget https://drive.di.he.cn/ttc.tar.gz （暂时挂了）
+wget https://download.yobot.win/hoshinobot/ttc.tar.gz
 tar zxvf ./ttc.tar.gz -C /usr/shared/fonts/chinese
 mkfontscale
 mkfontdir
