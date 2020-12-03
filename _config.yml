@@ -111,6 +111,13 @@ theme_config:
     enable: false
   valine:
     enable: false
+    # enable: true
+    # appId: # your appid
+    # appKey: # your appkey
+    # avatar: mm
+    # notify: false
+    # visitor: false
+    # pageSize: 10
   disqus:
     enable: false
   dplayer:
