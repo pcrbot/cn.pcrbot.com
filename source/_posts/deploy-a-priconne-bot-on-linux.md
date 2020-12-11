@@ -4,6 +4,13 @@ date: 2020-12-02T12:00:00.000Z
 cover: /images/banner-little-lyrical.jpg
 author: 地河君_official
 ---
+---
+title: Linux 下部署一个公主连结 qq 群聊机器人
+date: 2020-09-22 23:38:28
+tags:
+
+---
+
 ## 开篇
 
 目前, 为公主连结玩家定制的 qq 群聊机器人 ( 以 [yobot](https://github.com/pcrbot/yobot) 和 [HoshinoBot](https://github.com/Ice-Cirno/HoshinoBot) 最具代表性 ) 已有非常多用户。它们可以提供一些诸如 公会战管理, 竞技场查询 等功能的应答, 为公主连结玩家提供了非常有用的帮助。
@@ -152,13 +159,13 @@ go-cqhttp 是使用 go 语言对 cqhttp 协议重新实现, 并实现了很多�
 ```shell
 cd
 mkdir mirai&&cd mirai
-wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.33/go-cqhttp-v0.9.33-linux-amd64.tar.gz
-tar xf go-cqhttp-v0.9.33-linux-amd64.tar.gz
+wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.34/go-cqhttp-v0.9.34-linux-amd64.tar.gz
+tar xf go-cqhttp-v0.9.34-linux-amd64.tar.gz
 
 chmod +x go-cqhttp
 
 ./go-cqhttp
-#首次运行 go-cqhttp , 会在当前目录下生成两个文件, 其中 device.json 保存设备信息, config.hjson 是 go-cqhttp 的配置文件
+#首次运行 go-cqhttp , 会在当前目录下生成配置文件 config.hjson , 如果你的机器人登录成功, 还会生成用于保存设备信息的 device.json 
 ```
 
 ### go-cqhttp 的配置文件
@@ -166,6 +173,8 @@ chmod +x go-cqhttp
 config.hjson :
 
 hjson 支持注释, 生成的 config.hjson 有非常详细的注释, 此处不再赘述。
+
+~~这注释给我看傻了。~~
 
 推荐修改的配置项 :
 
@@ -190,11 +199,11 @@ device.json :
 }
 ```
 
-当设备种类设定为 Android Pad 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息 ( 红包标题和运气王等 )。此时, 用于部署 bot 的账号不能在别的设备上用 QQ HD 登录。
+当设备种类设定为 Android Pad 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用 QQ HD 登录。
 
 当设备种类设定为 Android 手机 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用手机 QQ 登录。
 
-当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。~~此时, 用于部署 bot 的账号不能在 Android 手表上登录。~~ ( 真的有人用手表吗 )
+当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。~~此时, 用于部署 bot 的账号不能在 Android 手表上登录。~~ ( 所以真的有人用手表吗 )
 
 ### 配置 go-cqhttp 反向 ws 配置
 
@@ -238,7 +247,7 @@ git clone https://github.com/Ice-Cirno/HoshinoBot.git
 cd HoshinoBot
 cp -r hoshino/config_example hoshino/config
 
-pip3 install -r https://cn-pan.di.he.cn/require-full.txt
+pip3 install -r https://di.he.cn/requirements.txt
 #境内服务器可以通过加上参数 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 加快下载速度
 
 vim hoshino/config/__bot__.py
@@ -258,7 +267,7 @@ wget https://drive.di.he.cn/res.tar.gz
 #↑↑↑ 境内服务器别看了, 下不动 ↑↑↑
 #微软, 行 ! 
 
-#如果你在境内服务器部署, 你应该这样
+#如果你使用境内服务器部署, 你应该这样
 wget https://cn-pan.di.he.cn/res.tar.gz
 
 tar xf res.tar.gz
@@ -274,12 +283,13 @@ yum -y install fontconfig
 mkdir -p /usr/share/fonts/chinese
 
 #↓↓↓ 境外服务器请执行 ↓↓↓
-https://drive.di.he.cn/msyh.tar.gz
+wget https://drive.di.he.cn/msyh.tar.gz
+#↑↑↑ 境内下不动 ↑↑↑
 
-#↓↓↓ 境外服务器请执行 ↓↓↓
-https://cn-pan.di.he.cn/msyh.tar.gz
+#↓↓↓ 境内服务器请执行 ↓↓↓
+wget https://cn-pan.di.he.cn/msyh.tar.gz
 
-tar zxvf ./ttc.tar.gz -C /usr/share/fonts/chinese
+tar zxvf ./msyh.tar.gz -C /usr/share/fonts/chinese
 mkfontscale
 mkfontdir
 ```
@@ -301,7 +311,9 @@ cd ~/mirai
 
 #可能需要异地登录验证, 在验证完后用 ./go-cqhttp 重新运行
 
-#然后, 使用组合键 Ctrl + a ,d 挂起这个窗口
+#验证码可能有点阴间 ( bushi )
+
+#成功登陆后, 使用组合键 Ctrl + a ,d 挂起这个窗口
 ```
 
 2, 启动 `HoshinoBot` :
@@ -325,17 +337,17 @@ python3 run.py
 
 ### 获取 yobot
 
-两种安装 yobot 的方法。这里只写一种。
+两种安装 yobot 的方法。这里只写一种。<br>原因是第二种安装方法在未来将不被支持。
 
 #### 源码运行
 
-首先修改 go-cqhttp 的示例, 使其向 `ws://127.0.0.1:9222/ws/` 上报事件, 下面的配置文件可供参考
+首先修改 go-cqhttp 的示例并重启, 使其向 `ws://127.0.0.1:9222/ws/` 上报事件, 下面的配置文件可供参考
 
 
 ```json
     ws_reverse_servers: [
         {
-            enabled: false
+            enabled: true
             reverse_url: ws://127.0.0.1:8080/ws/
             reverse_api_url: ""
             reverse_event_url: ""
@@ -343,7 +355,7 @@ python3 run.py
         }
 
         {
-            enabled: false
+            enabled: true
             reverse_url: ws://127.0.0.1:9222/ws/
             reverse_api_url: ""
             reverse_event_url: ""
@@ -364,6 +376,8 @@ screen -S yobot
 
 python3 main.py
 sh yobotg.sh
+
+#然后, 使用组合键 Ctrl + a , d 挂起这个窗口
 ```
 
 私聊或群聊发送 `V` 或 `ver` 或 `version` , bot 会回复 yobot 版本。
@@ -383,32 +397,6 @@ firewall-cmd --reload
 
 手机或者电脑访问 `http://服务器 ip :9222/` , 能打开就算搭建成功。
 
-
-使用 `python3 ~/HoshinoBot/run.py` 运行一次 HoshinoBot , 此时启动日志应有
-
-```yaml
-[2020-09-22 18:36:31,967 nonebot] INFO: Succeeded to import "hoshino.modules.yobot.yobot"
-```
-
-接下来使用组合键 Ctrl + C 关闭 Hoshino ,
-
-```shell
-vim ~/HoshinoBot/hoshino/modules/yobot/yobot/src/client/yobot_data/yobot_config.json
-#修改 public_address 中的字段, 9222 修改为 8080
-```
-
-接下来, 就可以启动
-
-```shell
-screen -S bot
-#创建新的用于运行 hoshino + yobot 的窗口
-
-python3 ~/HoshinoBot/run.py
-#启动命令
-
-#然后, 使用组合键 Ctrl + a ,d 挂起这个窗口
-```
-
 ###  反向代理
 
 设置反向代理的一个好处是可以为你的 yobot 的 web 引入 https 支持, https 协议可以通过 ssl 提供加密处理数据、验证对方身份以及数据完整性保护, 是一种安全的传输协议。
@@ -419,7 +407,7 @@ python3 ~/HoshinoBot/run.py
 
 **注意 : 有些域名无法备案, 购买域名之前应该先去了解。**
 
-另, 如果你注重自己的隐私, 那我建议你远离阿里云。
+如果你想要保护隐私, ~~那么你应该拒绝国内云~~。
 
 下面开始介绍使用 [nginx](https://nginx.org/) 将在 `9222` 或 `8080` 端口运行的 yobot 的 web 转发到 80 端口, 默认你已经为你的服务器设置好了解析。
 
@@ -563,8 +551,6 @@ vim /usr/local/nginx/conf/nginx.conf
 
 注意 `nginx.conf` 是 nginx 的主配置文件, 如果你不知道其各项参数的含义, 不要做多余的修改。建议在修改前对这个文件进行备份。
 
-2020 / 10 / 21 更新 : `nginx.conf` 不是 json , 无需加逗号。
-
 重启 nginx 使其生效
 
 ```shell
@@ -576,8 +562,10 @@ nginx -s reload
 ```shell
 #源码版
 vim ~/yobot/src/client/yobot_data/yobot_config.json
+
 # public_adress 字段的值修改为 https://example.com/
-#↑↑↑ example.com 替换成你自己的域名 ↑↑↑
+
+#↑↑↑ 此处 example.com 替换成你自己的域名 ↑↑↑
 ```
 
 #### 验证反向代理
@@ -592,10 +580,7 @@ vim ~/yobot/src/client/yobot_data/yobot_config.json
 #源码版
 vim ~/yobot/src/client/yobot_data/yobot_config.json
 # HOST 字段的值修改为 127.0.0.1
-
-#插件版
-vim ~/HoshinoBot/hoshino/config/__bot__.py
-# HOST 字段的值修改为 127.0.0.1
+#如果你没有做好反向代理的工作, 请你务必不要这样做 !
 ```
 
 ### 获取 cq-picsearcher-bot
@@ -740,6 +725,6 @@ pm2 log go-cqhttp
 
 如果你想加入我们, 你可以与 <michikawachin@outlook.com> 联系。
 
-# 致谢
+## 致谢
 
 本项目需致谢 [Adpex](https://github.com/Adpex), [Aspirin](https://github.com/AkiraXie) [Lancercmd](https://github.com/Lancercmd), [Ice-Cirno](https://github.com/Ice-Cirno), [ishkong](https://github.com/ishkong), [thgsohack](https://github.com/kkbllt), [WenyiDong](https://github.com/WenyiDong), [yoshino](https://github.com/111234567890), [yuudi](https://github.com/yuudi) 等人。
