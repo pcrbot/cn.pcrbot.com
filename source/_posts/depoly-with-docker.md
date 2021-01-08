@@ -124,6 +124,7 @@ SUPERUSERS = ['000000']  # 此处填写主人的QQ号
 # 启动 HoshinoBot
 docker run -d \
            -v ${PWD}/Hoshino:/HoshinoBot \
+           -v ${PWD}/Hoshino_data:/root/.hoshino \
            --name hoshino \
            --network qqbot \
            pcrbot/hoshinobot
@@ -134,11 +135,15 @@ docker run -d \
 启动 yobot
 
 ```bash
+# 设置一些属性
+export YOBOT_PUBLIC_ADDRESS="https://your-own-domain-here.com/"  # 将域名改为你自己的域名
+export YOBOT_ACCESS_TOKEN="xxxxxx"  # 此处填写刚才生成的密钥
+
 # 启动 yobot 并将数据存放在当前目录下 yobot_data 文件夹
 docker run -d \
            -v ${PWD}/yobot_data:/yobot/yobot_data \
-           -e YOBOT_PUBLIC_ADDRESS="https://your-own-domain-here.com/" \  # 将域名改为你自己的域名
-           -e YOBOT_ACCESS_TOKEN="xxxxxx" \  # 此处填写刚才生成的密钥
+           -e YOBOT_PUBLIC_ADDRESS \
+           -e YOBOT_ACCESS_TOKEN \
            --name yobot \
            --network qqbot \
            yobot/yobot:pypy
