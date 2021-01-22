@@ -365,20 +365,20 @@ docker run -d \
 
 HoshinoBot 有很多社区插件，可以在[插件索引](https://github.com/pcrbot/HoshinoBot-plugins-index/blob/master/README.md)中查看，安装插件方法请参考插件自身的介绍页。
 
-注意：在安装依赖时，需要使用 `pip3`，我们需要改为 `docker exec hoshinobot pip3`
+注意：在安装依赖时，需要使用 `pip3`，我们需要改为 `docker exec hoshino pip3`
 
 （可选）我们也可以为这个命令设置一个别名方便记忆
 
 ```bash
 # 为这一长串命令设置一个临时别名
-alias hpip='docker exec hoshinobot pip3'
+alias hpip='docker exec hoshino pip3'
 ```
 
 （可选）将其写入 `~/.bashrc` 结尾，即可永久生效
 
 ```bash
 # 为这一长串命令设置一个永久别名
-echo "alias hpip='docker exec hoshinobot pip3'" >>~/.bashrc
+echo "alias hpip='docker exec hoshino pip3'" >>~/.bashrc
 ```
 
 （可选）安装 `hsn` 插件管理器
@@ -405,9 +405,9 @@ mv hsn /usr/bin/
 # 配置
 hsn set --path=${PWD}/Hoshino
 hsn set -i="https://github.com"
-hsn set --pip="docker exec hoshinobot pip3"
+hsn set --pip="docker exec hoshino pip3"
 # 国内用户可改为执行下面这些配置
 # hsn set --path=${PWD}/Hoshino
 # hsn set -i="https://hub.fastgit.org"
-# hsn set --pip="docker exec hoshinobot pip3 -i https://mirrors.aliyun.com/pypi/simple/"
+# hsn set --pip="docker exec hoshino pip3 -i https://mirrors.aliyun.com/pypi/simple/"
 ```
