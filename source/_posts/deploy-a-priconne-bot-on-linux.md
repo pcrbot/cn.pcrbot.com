@@ -33,17 +33,6 @@ author: 地河君_official
 
 此处并非要求你一定要为社区贡献代码成为 Contributor, 你使用这些项目, 你和你公会的朋友就可以使用实用或者有趣的功能, bot 的作者 [yuudi](https://github.com/yuudi) 和 [Ice-Cirno](https://github.com/Ice-Cirno) 也会感到开心。
 
----
-
-虽然你也可以通过购买一些出租 bot 的人, 他们有的是希望有人能一起分担服务器费用, 以便获得更好的学习和开发环境, 也有带着纯粹的商业目的, 利用别人代码, 满足自己的钱包的现象。
-
-大部分用户都对 服务器的配置 以及 各种 bot 的区别,  事实上, 一般的服务商提供的最低配置的服务器 ( 1h1g1m ) 都足以运行 bot 并为上百群提供应答, 这样算来, 花 9.5 r 买一台服务器租给 200 个群, 确实是发家致富的好手段 ( 笑 )。<br>我们知道, [yobot](https://github.com/pcrbot/yobot) 和 [HoshinoBot](https://github.com/Ice-Cirno/HoshinoBot) 是出名的 公主连结群聊 bot , 那么各种 xcwbot , 可可萝 bot , 又是什么呢 ? 无非是 [yobot](https://github.com/pcrbot/yobot) 或 [HoshinoBot](https://github.com/Ice-Cirno/HoshinoBot)  换皮罢了, 部署一个 bot , 并根据自己的喜好把名字改成 xcw , 或者是 可可萝, 然后 xcwbot 或者是 可可萝 bot 就成了, 不要相信商家们 `定制 bot` 的噱头, 无论是 yobot 还是 HoshinoBot , 在现阶段搭建都是非常非常简单的, 而 定制 bot 的应该是提出需求, 并由接定制的商户将功能写好并对客户提交代码, 代搭和定制具有本质的区别。
-
->- ( 注: 并非所有的 xcwbot 都是换皮, qq 平台存在原创非换皮闭源 xcwbot )
->- ( 注: 并非所有的可可萝 bot 都是换皮 bot , 存在 已经弃坑的 kkl-android 项目和以 HoshinoBot 为基础开发的一个全平台的 kokkorobot, 但暂无将这两个项目用于商业行为的现象 )
-
-相信大家都能对这种行为做出合理的判断。
-
 > Ice-Cirno : 我只是不想让我自己的代码帮别人数钱罢了。
 >
 > 我 : 可以建一个组织, 仓库仅组织可见。
@@ -71,13 +60,18 @@ author: 地河君_official
 
 你需一台服务器, 服务器价格昂贵, 但你只是想用来部署机器人的话,你可以租用服务器厂商的 虚拟服务器 ( vps ) 。当前, 境内的服务器大厂多数有学生优惠, 你可以在完成学生验证之后以超实惠的价格买到一台虚拟服务器。如果你不是学生, ~~你可尝试去某宝当假学生。~~
 
-~~目前最划算的境内服务器是:阿里云轻量应用服务器, 配置为 1h2g5m , 价格为 9.5 r / 月~~<br>没啦, 傻逼阿里云。
- 其他性价比较高的服务器有:阿里云 ECS ( 学生优惠 ) , 腾讯云新用户优惠, 配置为 1h2g5m 。腾讯云学生优惠, 配置为 1h2g1m 。
+~~目前最划算的境内服务器是:阿里云轻量应用服务器, 配置为 1h2g5m , 价格为 9.5 r / 月~~<br>没啦, 你来晚啦, 阿里云不给啦。
+
+其他性价比较高的服务器有:阿里云 ECS ( 学生优惠 ) , 腾讯云新用户优惠, 配置为 1h2g5m 。腾讯云学生优惠, 配置为 1h2g1m 。
 我的个人感受是腾讯云的配置高过阿里云。
+
+如果你使用的是境内服务器, 直接随便找个上海的 vps 就行。
 
 ~~境外服务器推荐: 你可以选 [谷歌云](https://console.cloud.google.com/?hl=zh-CN) ,[甲骨文云](https://www.oracle.com/cn/cloud/free/) ( 完成信用卡认证后免费 ), [vultr](https://vultr.com/) ( 非常便宜, cpu 有点拉跨, 总体而言性价比算高 ), [搬瓦工](https://bandwagonhost.com/index.php) (涨价后不香了, 但是支付方便, 另外坑多) , [oneprivide](https://oneprovider.com/) ( 便宜, 支付方便, 较划算, 客服有点糟糕 )。[linode](https://www.linode.com/) (便宜, 挺好, 不支持极为先进的支付宝, 必须信用卡)。~~
 
-呜呜呜, 我错了 ! 我不应该乱推荐服务器, 境外服务器水实在深, 这个建议去找专家。。~~哭哭。。~~<br>顺带一提我自己用的是 aws 。
+呜呜呜, 我错了 ! 我不应该乱推荐服务器, 境外服务器水实在深, 这个建议去找专家。。<br>顺带一提我自己用的是 aws 。
+
+如果你实在不知道如何选择, 你可以尝试使用 [ipip.net 提供的 ping 功能](https://tools.ipip.net/ping.php) , ping 一下 mswifi.3g.qq.com , 然后按响应时间排序, 在 ping 的地点那一列能看到服务器的提供商, 优先选择 ping 值低的提供商。
 
 ### 选择服务器的系统镜像
 
@@ -97,80 +91,93 @@ author: 地河君_official
 
 下列指令请一条一条复制, 一段一段复制可能会出现问题。
 
+注 : 此处是为了防止编译时发生错误。
+
 ```shell
-#CentOS 用户请执行
+# CentOS 用户请执行
 yum -y update
 yum -y groupinstall "Development tools"
 yum -y install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc* libffi-devel make git vim screen
 
-#Debian 、Ubuntu 用户请执行
+# Debian 、Ubuntu 用户请执行
 apt -y update
 apt -y install build-essential
 apt -y install -y make libssl-dev zlib1g-dev libbz2-dev libpcre3 libpcre3-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libperl-dev libncursesw5-dev xz-utils tk-dev zlib1g libffi-dev liblzma-dev screen git vim openssl gcc
 ```
 
-### 安装 Python3.8
+### 安装 Python3.9
+
+Python 3.9 通过测试。
 
 ```shell
-#Debian 、Ubuntu 用户请先执行
-rm -f /usr/bin/python3
-rm -f /usr/bin/pip3
-#此处是删除 Debian 或者 Ubuntu 自带的 Python3 软链, 以便为编译安装的 Python3.8 自动添加进环境变量, 并非卸载服务器自带的 Python3
-#CentOS 7.x 不自带 Python3 所以无需此操作
+wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz
+# 下载 Python 源代码
+# 国内源 : https://cn-pan.di.he.cn/Linux/Python-3.9.1.tgz
 
-#此处开始安装 Python3.8
-wget https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tgz
-#境内机器请将这一步的链接替换成 https://cn-pan.di.he.cn/Software/Python-3.8.6.tgz
-tar xf Python-3.8.6.tgz
-#xf 可比 zxvf 快多了 ( 笑 )
-cd Python-3.8.6
+tar xf Python-3.9.1.tgz
+# 解压
 
-#↓↓↓ CentOS 用户请执行 ↓↓↓
+cd Python-3.9.1
+# 进入这个文件夹
+
+# ↓↓↓ CentOS 用户请执行 ↓↓↓
 ./configure
-#↑↑↑ Ubuntu 和 Debian 用户请无视 ↑↑↑ 
+# ↑↑↑ Ubuntu 和 Debian 用户请无视 ↑↑↑ 
+# 编译检查, 生成 Makefile
 
-#↓↓↓ Ubuntu 和 Debian 用户请执行 ↓↓↓
+# ↓↓↓ Ubuntu 和 Debian 用户请执行 ↓↓↓
 ./configure  --enable-optimizations
-#↑↑↑ CentOS 用户请无视 ↑↑↑ 
+# ↑↑↑ CentOS 用户请无视 ↑↑↑ 
+# 编译检查, 生成 Makefile
 
 make&&make install
+# 编译安装
 
 pip3 install --upgrade pip
-#境内机器可以加上 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 这个参数加快下载速度
+# 境内机器可以加上 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 这个参数加快下载速度
 ```
 
 `--enable-optimizations` 是 Python 编译优化的参数, 编译检查时加上这个参数大约能给 Python 带来 10% 的性能优化。<br>如果 `gcc编译器` 版本低于 `5.4.0` , 那么加上这个参数会使 Python 编译失败, CentOS 自带的包管理工具 `yum` 不能帮你安装 `5.4.0` 以上的版本, Ubuntu 18.04 和 Debian 10 则分别自带了版本 `7.4.0` 和 `8.3.0` 的 `gcc编译器`。
 
-你也可以自行为你的 CentOS 服务器升级 `gcc编译器` , 在编译 gcc编译器 的时候需要大量时间, 你可自行尝试。
+你也可以自行为你的 CentOS 服务器升级 `gcc编译器` , 在编译 gcc编译器 的时候需要大量时间, 你可自行借助搜索引擎尝试。
 
 ### 获取 go-cqhttp
 
 go-cqhttp 是使用 go 语言对 cqhttp 协议重新实现, 并实现了很多原版 cq-http 没有实现的 api 。<br>四酱老婆好棒！
 
-**go-cqhttp 目前正在快速更新迭代, 本教程给出的链接可能不是最新版。**
-你可以在 [这里](https://github.com/Mrs4s/go-cqhttp/releases) 获取到最新版的下载地址。
-
 ```shell
 cd
-mkdir mirai&&cd mirai
-wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.34/go-cqhttp-v0.9.34-linux-amd64.tar.gz
+# 进入到用户文件夹
+
+mkdir go-cqhttp&&cd go-cqhttp
+# 创建 go-cqhttp 文件夹并将工作路径切换到这个文件夹
+
+wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.39/go-cqhttp-v0.9.39-linux-amd64.tar.gz
+# 国内源 : https://downloads.go-cqhttp.org/artifacts/go-cqhttp-linux-amd64.tar.gz
+# 下载 go-cqhttp
+
 tar xf go-cqhttp-v0.9.34-linux-amd64.tar.gz
+# 解压
 
 chmod +x go-cqhttp
+# 给 go-cqhttp 执行权限
 
 ./go-cqhttp
-#首次运行 go-cqhttp , 会在当前目录下生成配置文件 config.hjson , 如果你的机器人登录成功, 还会生成用于保存设备信息的 device.json 
+# 首次运行 go-cqhttp , 在当前目录下生成配置文件 config.hjson
+
+./go-cqhttp update
+# 将 go-cqhttp 升级到最新版
 ```
 
 ### go-cqhttp 的配置文件
 
 config.hjson :
 
-hjson 支持注释, 生成的 config.hjson 有非常详细的注释, 此处不再赘述。
+hjson 支持注释, 生成的 config.hjson 有非常详细的注释, 此处不再赘述。注意账号密码需填写准确。
 
-~~这注释给我看傻了。~~
+go-cqhttp 使用明文储存密码, 如果你遇到了困难需要向他人, 请注意截图不要截这一部分。
 
-推荐修改的配置项 :
+另外, 还推荐修改一处配置项 :
 
 ```json
 {
@@ -180,11 +187,11 @@ hjson 支持注释, 生成的 config.hjson 有非常详细的注释, 此处不�
 
 此处修改是打开强制分片发送消息, 分片发送将会带来更快的速度以及减少一部分腾讯对机器人消息的风控。
 
-device.json :
+稍后, 你会成功登陆, 当前目录还会生成一个名为 device.json 的文件, 它保存的是登陆设备的信息 :
 
 ```json
 {
-	"protocol": 0, // 设备种类, 值为 0 代表 Android Pad, 值为 1 代表 Android 手机, 值为 2 代表 Android 手表
+	"protocol": 0, // 设备种类, 值为 0 代表 iPad, 值为 1 代表 Android 手机, 值为 2 代表 Android 手表
 	"display": "xxx", // 无需考虑的配置项
 	"finger_print": "xxx", // 无需考虑的配置项
 	"boot_id": "xxx", // 无需考虑的配置项
@@ -193,19 +200,31 @@ device.json :
 }
 ```
 
-当设备种类设定为 Android Pad 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用 QQ HD 登录。
+当设备种类设定为 iPad 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用 QQ HD 登录。<br>~~呜呜呜, 年轻人的第一台 iPad。~~
 
 当设备种类设定为 Android 手机 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用手机 QQ 登录。
 
-当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。~~此时, 用于部署 bot 的账号不能在 Android 手表上登录。~~ ( 所以真的有人用手表吗 )
+当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。~~此时, 用于部署 bot 的账号不能在 Android 手表上登录。~~ ( 所以真的有人用手表吗, 别吧 )
 
 ### 配置 go-cqhttp 反向 ws 配置
 
-给出两种示例, 
+由于 Hoshino 使用反向 websocket 与 go-cqhttp 通信, 所以我们应该对配置文件中的反向 websocket 部分进行配置。
 
-第一种  : <br>以 HoshinoBot 为例, HoshinoBot 的默认端口是 `8080` , 因此 go-cqhttp 的反向 ws 上报地址应为 `ws://127.0.0.1:8080/ws/` 
+两种示例, 两种都是正确的, 随便选一种就可以。
+
+以 HoshinoBot 为例, HoshinoBot 的默认端口是 `8080` , 因此 go-cqhttp 的反向 ws 上报地址应为 `ws://127.0.0.1:8080/ws/` 。
+
+你可以使用 vim 编辑器编辑配置文件 :
+
+```shell
+vim config.hjson
+# 不了解 vim 编辑器的速速去了解先
+```
+
+找到 `ws_reverse_servers` 部分, 将其修改为 :
 
 ```json
+{
     ws_reverse_servers: [
         {
             enabled: true
@@ -215,9 +234,10 @@ device.json :
             reverse_reconnect_interval: 3000
         }
     ]
+}
 ```
 
-第二种 :
+或者 :
 
 ```json
     ws_reverse_servers: [
@@ -233,19 +253,30 @@ device.json :
 
 两种都是正确的, 任意一种即可。
 
+然后退出 vim 编辑器。
+
 ### 获取 HoshinoBot
+
+重头戏来了。
 
 ```shell
 cd
+# 进入到用户文件夹
+
 git clone https://github.com/Ice-Cirno/HoshinoBot.git
+# clone 仓库
+
 cd HoshinoBot
+# 切换工作路径
+
 cp -r hoshino/config_example hoshino/config
+# 复制配置文件
 
 pip3 install -r https://di.he.cn/requirements.txt
-#境内服务器可以通过加上参数 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 加快下载速度
+# 小技巧 : 在这条指令的结尾加上 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 切换到境内源
 
 vim hoshino/config/__bot__.py
-#自定义你的机器人, 按照中文注释填好。
+# 修改配置项以自定义你的机器人, 按照中文注释填好。
 ```
 
 若你的服务器有中文乱码的现象, 你可以对照 [这里](https://github.com/Ice-Cirno/HoshinoBot/blob/master/hoshino/config_example/__bot__.py) 的中文注释修改你的配置。
@@ -256,36 +287,40 @@ vim hoshino/config/__bot__.py
 
 ```shell
 cd ~/HoshinoBot
+# 切换工作路径
+
 #↓↓↓ 境外服务器请执行 ↓↓↓
 wget https://drive.di.he.cn/res.tar.gz
-#↑↑↑ 境内服务器别看了, 下不动 ↑↑↑
-#微软, 行 ! 
-
-#如果你使用境内服务器部署, 你应该这样
-wget https://cn-pan.di.he.cn/res.tar.gz
+# 下载静态资源
+# 境内源 : https://cn-pan.di.he.cn/hoshinobot/res.tar.gz
+# 微软, yyds ! 
 
 tar xf res.tar.gz
+# 解压静态资源
 ```
 
 安装新版 jjc 查询合成图片所需要的字体 :
 
 ```shell
-#↓↓↓ CentOS 请先执行 ↓↓↓
+# ↓↓↓ CentOS 执行 ↓↓↓
 yum -y install fontconfig
-#↑↑↑ Ubuntu 和 Debian 请无视 ↑↑↑
+
+#↓↓↓ Ubuntu 和 Debian 执行 ↓↓↓
+apt -y install fontconfig
 
 mkdir -p /usr/share/fonts/chinese
+# 创建字体文件夹
 
-#↓↓↓ 境外服务器请执行 ↓↓↓
 wget https://drive.di.he.cn/msyh.tar.gz
-#↑↑↑ 境内下不动 ↑↑↑
+# 下载字体
+# 国内源 : https://cn-pan.di.he.cn/hoshinobot/msyh.tar.gz
 
-#↓↓↓ 境内服务器请执行 ↓↓↓
-wget https://cn-pan.di.he.cn/msyh.tar.gz
+tar zxvf msyh.tar.gz -C /usr/share/fonts/chinese
+# 解压到字体目录
 
-tar zxvf ./msyh.tar.gz -C /usr/share/fonts/chinese
 mkfontscale
 mkfontdir
+# 创建字体缓存
 ```
 
 ### 测试 bot 是否搭建成功
@@ -295,19 +330,25 @@ mkfontdir
 1, 启动 `go-cqhttp` :
 
 ```shell
-screen -S mirai
-#创建一个新的窗口用于运行 go-cqhttp 
+screen -S go-cqhttp
+# 创建一个新的窗口用于运行 go-cqhttp 
 
-cd ~/mirai
+cd ~/go-cqhttp
 
 ./go-cqhttp
-#运行 go-cqhttp 
+# 运行 go-cqhttp 
 
-#可能需要异地登录验证, 在验证完后用 ./go-cqhttp 重新运行
+# 可能需要异地登录验证, 可能需要滑块验证
+# 滑块验证请看 : https://docs.go-cqhttp.org/faq/slider.html
 
-#验证码可能有点阴间 ( bushi )
+# 验证可能有点阴间, 请不要放弃
 
-#成功登陆后, 使用组合键 Ctrl + a ,d 挂起这个窗口
+# 验证成功之后, 使用 ./go-cqhttp 这个命令来启动 go-cqhttp, 账号会开始登陆
+
+# 有极低概率获取到无效的登陆地址而导致登陆失败, 重试即可解决
+
+# 成功登陆后, go-cqhttp 会尝试连接到 Websocket Universal 服务器 ws://127.0.0.1:8080/ws/ 
+# 你现在的 8080 端口上还没有运行 HoshinoBot , 所以会连接不上, 看到连接不上的提示不要慌, 使用组合键 Ctrl + a ,d 挂起这个窗口
 ```
 
 2, 启动 `HoshinoBot` :
@@ -315,10 +356,12 @@ cd ~/mirai
 ```shell
 screen -S hoshino
 #创建一个新的窗口用于运行 HoshinoBot
-cd ~/HoshinoBot
-python3 run.py
 
-#然后, 使用组合键 Ctrl + a ,d 挂起这个窗口
+cd ~/HoshinoBot
+# 切换工作路径
+
+python3 run.py
+# 运行 Hoshino
 ```
 
 如果到这里为止一切正常, HoshinoBot 的控制台应该会输出类似于这样的一条日志 :
@@ -327,19 +370,99 @@ python3 run.py
 [2020-09-21 22:30:45,435] 127.0.0.1:56363 GET /ws/ 1.1 101 - 114514
 ```
 
-恭喜你成功搭建了 HoshinoBot , 现在立刻在群里 艾特 你的 bot 并发送一句 `kkp` 吧！
+然后, 使用组合键 Ctrl + a ,d 挂起这个窗口。
+
+恭喜 ! 你成功搭建了 HoshinoBot , 现在立刻在群里 艾特 你的 bot 并发送一句 `kkp` 吧 !
+
+### Hoshino 的 api key
+
+Hoshino 部分功能需要填写 apikey 后才可使用。
+
+#### Mikan RSS token
+
+使用 HoshinoBot 的番剧推送功能需要 Mikan 的 rss token,
+
+你可以在 mikan 注册账号之后, 在 [这个页面](https://mikanani.me/) 鼠标右键点击 RSS 订阅 的图标, 点击 复制链接地址, 然后得到这样一条地址
+
+`https://mikanani.me/RSS/MyBangumi?token=abcdfegABCFEFG%2b123%3d%3d`
+
+将其 token 部分的 `%2b`替换为`+` , 将 `%2f` 替换为 `/` , 将 `%3d `替换为 `=` 后, 得到这样的一个字符串 : `abcdfegABCFEFG%2b123==` , 这就是你的 rss token。
+
+```shell
+vim ~/HoshinoBot/hoshino/config/mikan.py
+```
+
+将它填写到 `mikan.py` 吧。
+
+#### 报时文本
+
+编写报时文本是个体力活, 你可以使用别人编写好了的, 
+
+```shell
+cd ~/HoshinoBot/hoshino/config
+# 切换工作路径
+
+rm -f hourcall.py
+# 删除空配置文件
+
+wget https://cn-pan.di.he.cn/hoshinobot/hourcall.py
+# 下载报时文本
+```
+
+#### 推特转发
+
+需推特开发者账号, 可在 [这里](https://developer.twitter.com/en) 申请, 一旦失败, 此账号将永久失去再次申请的资格。来自中国大陆的申请大概率不通过, 请使用海外手机号提高通过概率。
+
+**注意 : 使用 Google Voice 等虚拟手机号极高概率会使推特账号永久封禁。**
+
+如果你已经具有推特开发者账号, 你可以在 [这里](https://developer.twitter.com/en/portal/apps/new) 创建一个应用, 取得应用的 `consumer_key` , `consumer_secret` , `access_token_key` , `access_token_secret` 四个参数, 并将其填入配置文件的 `twitter.py` 。
+
+```shell
+vim ~/HoshinoBot/hoshino/config/twitter.py
+```
+
+#### pcrdfans 的授权 key
+
+使用 pcrdfans 提供的 jjc 查询功能需要 pcrdfans 的授权 key 。
+
+你可以在 <https://pcrdfans.com/bot> 申请。现在申请渠道已关闭。
+
+如果你已经有了授权 key , 你可以把它填到配置文件的 priconne.py 去。
+
+```shell
+vim ~/HoshinoBot/hoshino/config/priconne.py
+```
+
+#### 设置入群欢迎
+
+```shell
+vim ~/HoshinoBot/hoshino/config/groupmaster.py
+```
+
+在 `increase_welcome` 中按照这样的格式填写 :
+
+```json
+increase_welcome = {
+    "default": "欢迎入群 ! 你已经是群大佬了, 快来跟群萌新打个招呼吧 ~",
+    367501912: "欢迎来到 Hoshino 群 !",
+    770947581: "欢迎来到 yobot 1 群 !",
+    1044314369: "欢迎来到 yobot 2 群 !",
+    774394459: "欢迎来到 yobot 5 群 !",
+}
+```
 
 ### 获取 yobot
 
-两种安装 yobot 的方法。这里只写一种。<br>原因是第二种安装方法在未来将不被支持。
+两种安装 yobot 的方法。这里只写一种。<br>第二种安装方法在未来将不被支持。
 
 #### 源码运行
 
-首先修改 go-cqhttp 的示例并重启, 使其向 `ws://127.0.0.1:9222/ws/` 上报事件, 下面的配置文件可供参考
+首先修改 go-cqhttp 的示例并重启, 使其同时向 `ws://127.0.0.1:8080/ws/` 和 `ws://127.0.0.1:9222/ws/` 上报事件, 下面的配置文件可供参考 :
 
 
 ```json
-    ws_reverse_servers: [
+{
+	ws_reverse_servers: [
         {
             enabled: true
             reverse_url: ws://127.0.0.1:8080/ws/
@@ -356,20 +479,28 @@ python3 run.py
             reverse_reconnect_interval: 3000
         }
     ]
+}
 ```
 
 获取 yobot :
 
 ```shell
 cd
+# 切换工作路径到用户文件夹
 git clone https://github.com/yuudi/yobot.git
+# clone 仓库
+
 cd yobot/src/client
+# 切换工作路径
 
 screen -S yobot
-#创建一个新窗口用于运行 yobot 
+# 创建一个新窗口用于运行 yobot 
 
 python3 main.py
+# 生成 yobotg.sh
+
 sh yobotg.sh
+# 启动 yobot
 
 #然后, 使用组合键 Ctrl + a , d 挂起这个窗口
 ```
@@ -379,10 +510,9 @@ sh yobotg.sh
 放通端口, 使 yobot 的 web 能在 9222 端口被外部访问 :
 
 ```shell
-#↓↓↓ Ubuntu 和 Debian 用户请无视 ↓↓↓
 firewall-cmd --zone=public --add-port=9222/tcp --permanent
 firewall-cmd --reload
-#↑↑↑ Ubuntu 和 Debian 用户请无视 ↑↑↑ 
+# 针对 CentOS 用户, Ubuntu 和 Debian 无需执行。
 ```
 
 如果你是在大厂租用的服务器, 你的服务器商通常给你的服务器自带了防火墙, 服务器商不同, 开启方法也不相同, 你需要自行去服务商的服务器管理面板放通 9222 端口, 如果你不知道怎么操作, 你可以去谷歌搜索 <你的服务器商的名字> + 放通端口 。
@@ -403,7 +533,11 @@ firewall-cmd --reload
 
 如果你想要保护隐私, ~~那么你应该拒绝国内云~~。
 
-下面开始介绍使用 [nginx](https://nginx.org/) 将在 `9222` 或 `8080` 端口运行的 yobot 的 web 转发到 80 端口, 默认你已经为你的服务器设置好了解析。
+下面开始介绍使用 [nginx](https://nginx.org/) 将在 `9222` 或 `8080` 端口运行的 yobot 的 web 转发到 80 端口。
+
+假设你购买了域名, 你可以添加一条 A 记录到你的服务器, 如果你不知道怎么加, [Google](https://www.google.com.hk/webhp?hl=zh-CN&sourceid=cnhp&gws_rd=ssl) will help you.
+
+当你在命令行输入 `nslookup example.com` ( 其中 example.com 为你自己解析到服务器的域名 ) 并在 `address` 行看到了你服务器的公网 ip 时, 你就成功的设置好了解析。
 
 #### 安装 nginx 
 
@@ -411,26 +545,41 @@ firewall-cmd --reload
 
 
 ```shell
-cd&&wget http://nginx.org/download/nginx-1.18.0.tar.gz
-tar -zxvf nginx-1.18.0.tar.gz
+cd
+# 切换工作路径到用户文件夹
+
+wget http://nginx.org/download/nginx-1.18.0.tar.gz
+# 下载 nginx
+# 国内源 : https://cn-pan.di.he.cn/Linux/nginx-1.18.0.tar.gz
+
+tar xf nginx-1.18.0.tar.gz
+# 解压
+
 cd nginx-1.18.0
+# 切换工作路径
 
 ./configure --with-http_ssl_module --with-http_v2_module
-#如果没有加上这两个参数, 就无法引入 https 支持。
+# 编译检查, 生成 MakeFile , 启用 ssl 模块和 http2 模块
+# 如果没有加上这两个参数, 就无法引入 https 支持。
 
 make&&make install
+# 编译安装
 ```
 
 #### 验证安装
 
 ```shell
 cd /usr/local/nginx/sbin
+# 切换工作路径
+
 ./nginx
+# 启动 nginx
 
 curl 127.0.0.1
+# 向 127.0.0.1 发出 GET 请求, 返回结果会输出在命令行
 ```
 
-此处应输出 nginx 的欢迎页面
+此处应输出 nginx 的欢迎页面。
 
 #### 环境变量
 
@@ -447,14 +596,14 @@ export NGINX_HOME=/usr/local/nginx
 export PATH=$PATH:$NGINX_HOME/sbin
 ```
 
-使用 `source /etc/profile` 使其生效。
+退出 vim 编辑器, 使用 `source /etc/profile` 使其生效。
 
 验证 :
 
 ```shell
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --reload
-#放通 80 端口
+# 放通 80 端口
 ```
 
 然后, 使用你的手机或者电脑的浏览器, 输入你的域名并回车, 能访问到 nginx 的欢迎页面。
@@ -462,22 +611,30 @@ firewall-cmd --reload
 #### 申请 Let’s Encrypt 的 ssl 证书
 
 ```shell
-cd&&git clone https://github.com/certbot/certbot
-cd certbot
+cd
+# 切换工作路径到用户文件夹
 
-#↓↓↓ 以下命令是一个整体, 请整段复制到任意编辑器然后将本条命令第二行和第三行中 example.com 替换成你自己的域名后粘贴到终端
+git clone https://github.com/certbot/certbot
+# clone certbot 的仓库
+
+cd certbot
+# 切换工作路径
+
+# 请复制下面一整段命令将其粘贴到一个你喜欢的文本编辑器上, 不要用 Windows 记事本
 ./certbot-auto certonly --manual \
 -d *.example.com \
 -d example.com --agree-tos \
 --manual-public-ip-logging-ok --preferred-challenges \
 dns-01 --server https://acme-v02.api.letsencrypt.org/directory
+# 将文本编辑器上的这段命令里的第二行和第三行的 example.com 修改成你自己的域名
+# 然后, 将编辑器上的这段命令复制下来, 粘贴到服务器的终端执行
 ```
 
 然后, 它会自动安装一些依赖, 安装完毕后它会要求你输入你的邮箱。<br>~~( **输你自己的 ! wdnmd** )~~
 
 输入完邮箱, 它会询问你是否同意它往你的邮箱里发小广告, 建议回答 no 。
 
-随后, 它会要求你给你的域名添加一条 txt 记录 (这一步是为了验证域名的所有权) , 你需要在域名控制台添加, 你会在你的服务器的终端看到以下内容 :
+随后, 它会要求你给你的域名添加一条 txt 记录 ( 这一步是为了验证域名的所有权 ) , 你需要在域名控制台添加, 你会在你的服务器的终端看到以下内容 :
 
 ```yaml
 Please deploy a DNS TXT record under the name 
@@ -493,7 +650,7 @@ Before continuing, verify the record is deployed.
 此处应该这样添加:
 类型: txt , 主机记录: _acme-challenge , 记录值: `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` 
 
-回终端后按下回车, 大概率会要求进行第二次验证, 按照这个方法再次验证一次就行。
+回终端后按下回车, 会要求进行第二次验证, 按照这个方法再次验证一次就行。
 
 成功之后, 你服务器目录下的 `/etc/letsencrypt/live/你的域名` 下会生成一些文件, 其中 `fullchain.pem` 是你的证书, `privkey.pem` 是你的私钥。
 
@@ -554,12 +711,11 @@ nginx -s reload
 修改 yobot 的配置文件
 
 ```shell
-#源码版
 vim ~/yobot/src/client/yobot_data/yobot_config.json
 
 # public_adress 字段的值修改为 https://example.com/
 
-#↑↑↑ 此处 example.com 替换成你自己的域名 ↑↑↑
+# 此处 example.com 替换成你自己的域名
 ```
 
 #### 验证反向代理
@@ -571,10 +727,9 @@ vim ~/yobot/src/client/yobot_data/yobot_config.json
 修改 yobot 的配置文件, 仅允许本机监听
 
 ```shell
-#源码版
 vim ~/yobot/src/client/yobot_data/yobot_config.json
 # HOST 字段的值修改为 127.0.0.1
-#如果你没有做好反向代理的工作, 请你务必不要这样做 !
+# 如果你没有做好反向代理的工作, 请不要修改 !
 ```
 
 ### 获取 cq-picsearcher-bot
@@ -584,43 +739,54 @@ vim ~/yobot/src/client/yobot_data/yobot_config.json
 #### 安装 nodejs
 
 ```shell
-#CentOS用户请执行:
+# CentOS用户请执行 :
 curl -sL https://rpm.nodesource.com/setup_12.x | bash - 
 yum -y install nodejs
 
-#Ubuntu , Debian 用户请执行
+# Ubuntu , Debian 用户请执行 :
 curl -sL https://deb.nodesource.com/setup_12.x | bash - 
 apt -y install nodejs
 
-#不建议安装更高版本的 nodejs 
+# 不建议安装更高版本的 nodejs 
 ```
 
 #### 安装  cq-picsearcher-bot
 
 ```shell
 cd
-git clone https://github.com/Tsuk1ko/cq-picsearcher-bot.git
-cd cq-picsearcher-bot
-npm install -g yarn
-#然后 npm 就可以爪巴了
+# 切换工作路径到用户文件夹
 
-#↓↓↓ 境内服务器请执行 ↓↓↓
+git clone https://github.com/Tsuk1ko/cq-picsearcher-bot.git
+# clone 仓库
+
+cd cq-picsearcher-bot
+# 切换工作路径
+
+npm install -g yarn
+# 使用 npm 全局安装 yarn
+# 然后 npm 就可以爪巴了
+
+# yarn 切换到国内源
 yarn config set registry https://registry.npm.taobao.org --global
 yarn config set disturl https://npm.taobao.org/dist --global
-#↑↑↑ 境外服务器请忽略 ↑↑↑
+# ↑↑↑ 境外服务器请忽略 ↑↑↑
 
 yarn install
-#使用 yarn 安装依赖
+# 使用 yarn 安装依赖, 相比于使用 npm 节约了亿点点时间
 
 cp config.default.json config.json
+# 复制 config.default.json 并将其命名为 config.json
 
 vim config.json
-#修改配置文件
+# 修改配置文件
 ```
 
 #### 修改 cqps 的配置文件
 
-必须设置的项 : 第十五行的 `admin` 字段修改为你自己的 QQ 号 ( 做主人 ) 。
+必须设置的项 : 
+
+- 第十五行的 `admin` 字段修改为你自己的 QQ 号 ( 做主人 ) 。
+- 在 <https://saucenao.com> 创建账号, 并在 [这里](https://saucenao.com/user.php?page=search-api) 找到你的 api key , 将其填入到配置文件的第一百二十一行的 `saucenaoApiKey` 里。
 
 其余设置项 : 见 [cqps 作者 神代綺凜 对配置文件的详细介绍](https://github.com/Tsuk1ko/cq-picsearcher-bot/wiki/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E) 。
 
@@ -628,8 +794,10 @@ vim config.json
 
 ```shell
 cd ~/cq-picsearcher-bot
+# 切换工作路径
 
 yarn start
+# 启动 cqps
 ```
 
 注 : cqps 使用正向 ws 的通信方式, 默认端口和 go-cqhttp 的正向 ws 默认端口一致, 如果没更改过 cqps 的配置文件中的 `port` 字段, 则这样就算完成 cqps 的部署。
@@ -640,7 +808,7 @@ bot 会主动联系你 ( 笑 ) 。
 
 ### 安装更多功能
 
-访问 <https://github.com/pcrbot/> 寻找你想要的插件, 并按照说明添加即可。
+访问 <https://github.com/pcrbot/HoshinoBot-plugins-index> 寻找你想要的插件, 并按照说明添加即可。
 
 ## 优化
 
@@ -652,20 +820,25 @@ bot 会主动联系你 ( 笑 ) 。
 
 ```shell
 wget https://drive.di.he.cn/res.tar.gz
-#境外源
+# 下载
+# 境内源 : wget https://cn-pan.di.he.cn/hoshinobot/res.tar.gz
 
-wget https://cn-pan.di.he.cn/res-full.tar.gz
-#境内源
+tar xf res.tar.gz
+# 解压
 
-tar xf res-full.tar.gz
 mv res /usr/local/nginx/html
-chmod 666 /usr/local/nginx/html/res -R
+# 移动到网站目录
+
+chmod 777 /usr/local/nginx/html/res -R
+# 给可读可写权限
 ```
 
 然后修改 hoshino 的 \__bot__.py :
 
 ```python
 RES_DIR = r'/usr/local/nginx/html/res/'
+
+RES_PROTOCOL = 'http'
 
 RES_URL = 'http://<你服务器的 ip 地址>/res/'
 ```
@@ -674,38 +847,51 @@ RES_URL = 'http://<你服务器的 ip 地址>/res/'
 
 ### 使用 pm2 运行 go-cqhttp
 
-先关闭你启动的 go-cqhttp 进程
+先关闭你启动的 go-cqhttp 进程 :
+
+```shell
+screen -r go-cqhttp
+# 进入 go-cqhttp 这个 screen
+
+# Ctrl + C 组合键, 终止 go-cqhttp 进程
+
+exit
+# 关闭 screen
+```
+
+然后 :
 
 ```shell
 yarn global add pm2
+# yarn 全局安装 pm2
 
-cd ~/mirai
+cd ~/go-cqhttp
+# 切换工作路径
 
 pm2 start ./go-cqhttp
+# 使用 pm2 守护运行 go-cqhttp
 ```
 
 常用命令 : 
 
 ```shell
 pm2 stop go-cqhttp
-#关闭 go-cqhttp
+# 关闭 go-cqhttp
 
 pm2 restart go-cqhttp
-#重启 go-cqhttp
+# 重启 go-cqhttp
 
 pm2 log go-cqhttp
-#查看日志
+# 查看日志
 ```
-
-编写一个重启 go-cqhttp 的插件, 因过于简单此处不再示例。
-
-提示, 已知 os.system() 可以用来执行命令, 重启 go-cqhttp 的指令是 `pm2 restart go-cqhttp` , 求解 通过给机器人发指令达到重启 go-cqhttp 目的的 HoshinoBot 插件实现。<br>温馨提示 : 你编写时需要考虑指令的使用权限, 防止有人狂刷重启指令。( 笑 )
 
 ## 后续维护
 
-通常只需要会英语就能看懂控制台的报错, 通常将报错信息复制到谷歌就可以解决你的问题。
+此静态资源包可能 rank 表已经过时, 你可以向其他 bot 索要 rank 表, 并用 xftp 之类的软件将你的图片上传到你的服务器上。
 
-更新卡池, rank 表可以在 pcrbot 的 github 的组织的仓库中找到自动更新的插件。
+或者使用自动更新卡池, rank 表的插件, 你可以在 pcrbot 的 github 组织中寻找。
+
+如果你需要帮助, 你可以加入 Hoshino 群 , yobot 1 群 , yobot 2 群 , 或者 yobot 5 群, 一般情况下有礼貌的提问都会有人帮助你解决。
 
 ## 编写功能
 
@@ -717,7 +903,7 @@ pm2 log go-cqhttp
 
 如果你希望为社区贡献代码, 你可以熟悉 git 的使用后, 加入 [pcrbot 的 github 组织](https://github.com/pcrbot) 。
 
-如果你想加入我们, 你可以与 <michikawachin@outlook.com> 联系。
+如果你想加入我们, 你可以在 [这个仓库](https://github.com/pcrbot/join-us) 里提交一个 issue, 随后在与 GitHub 关联的邮箱里查看邀请。
 
 ## 致谢
 
