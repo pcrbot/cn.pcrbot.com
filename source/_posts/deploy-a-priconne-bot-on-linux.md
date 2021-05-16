@@ -60,16 +60,11 @@ author: 地河君_official
 
 你需一台服务器, 服务器价格昂贵, 但你只是想用来部署机器人的话,你可以租用服务器厂商的 虚拟服务器 ( vps ) 。当前, 境内的服务器大厂多数有学生优惠, 你可以在完成学生验证之后以超实惠的价格买到一台虚拟服务器。如果你不是学生, ~~你可尝试去某宝当假学生。~~
 
-~~目前最划算的境内服务器是:阿里云轻量应用服务器, 配置为 1h2g5m , 价格为 9.5 r / 月~~<br>没啦, 你来晚啦, 阿里云不给啦。
+目前境内大厂推出的活动 ( 例如学生优惠 / 开发者优惠 ) 都比较实惠, 尤其是某良心云 ( 自行在搜索 " 良心云 " ) 时不时出点香爆的活动, 可自行关注, 不要原价购买, ~~**除非你真的很有钱**~~。
 
-其他性价比较高的服务器有:阿里云 ECS ( 学生优惠 ) , 腾讯云新用户优惠, 配置为 1h2g5m 。腾讯云学生优惠, 配置为 1h2g1m 。
-我的个人感受是腾讯云的配置高过阿里云。
+~~境外服务器推荐:~~
 
-如果你使用的是境内服务器, 直接随便找个上海的 vps 就行。
-
-~~境外服务器推荐: 你可以选 [谷歌云](https://console.cloud.google.com/?hl=zh-CN) ,[甲骨文云](https://www.oracle.com/cn/cloud/free/) ( 完成信用卡认证后免费 ), [vultr](https://vultr.com/) ( 非常便宜, cpu 有点拉跨, 总体而言性价比算高 ), [搬瓦工](https://bandwagonhost.com/index.php) (涨价后不香了, 但是支付方便, 另外坑多) , [oneprivide](https://oneprovider.com/) ( 便宜, 支付方便, 较划算, 客服有点糟糕 )。[linode](https://www.linode.com/) (便宜, 挺好, 不支持极为先进的支付宝, 必须信用卡)。~~
-
-呜呜呜, 我错了 ! 我不应该乱推荐服务器, 境外服务器水实在深, 这个建议去找专家。。<br>顺带一提我自己用的是 aws 。
+我也不知道, 我也想知道, 觉得好的请务必推荐给我。。
 
 如果你实在不知道如何选择, 你可以尝试使用 [ipip.net 提供的 ping 功能](https://tools.ipip.net/ping.php) , ping 一下 mswifi.3g.qq.com , 然后按响应时间排序, 在 ping 的地点那一列能看到服务器的提供商, 优先选择 ping 值低的提供商。
 
@@ -110,14 +105,14 @@ apt -y install -y make libssl-dev zlib1g-dev libbz2-dev libpcre3 libpcre3-dev li
 Python 3.9 通过测试。
 
 ```shell
-wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz
+wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz
 # 下载 Python 源代码
-# 国内源 : https://cn-pan.di.he.cn/Linux/Python-3.9.1.tgz
+# 国内源 : https://mirrors.huaweicloud.com/python/3.9.5/Python-3.9.5.tgz
 
-tar xf Python-3.9.1.tgz
+tar xf Python-3.9.5.tgz
 # 解压
 
-cd Python-3.9.1
+cd Python-3.9.5
 # 进入这个文件夹
 
 # ↓↓↓ CentOS 用户请执行 ↓↓↓
@@ -137,7 +132,7 @@ pip3 install --upgrade pip
 # 境内机器可以加上 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 这个参数加快下载速度
 ```
 
-`--enable-optimizations` 是 Python 编译优化的参数, 编译检查时加上这个参数大约能给 Python 带来 10% 的性能优化。<br>如果 `gcc编译器` 版本低于 `5.4.0` , 那么加上这个参数会使 Python 编译失败, CentOS 自带的包管理工具 `yum` 不能帮你安装 `5.4.0` 以上的版本, Ubuntu 18.04 和 Debian 10 则分别自带了版本 `7.4.0` 和 `8.3.0` 的 `gcc编译器`。
+`--enable-optimizations` 是 Python 编译优化的参数, 编译检查时加上这个参数大约能给 Python 带来 10% 的性能优化。<br>如果 `gcc编译器` 版本低于 `5.4.0` , 那么加上这个参数会使 Python 编译失败, CentOS 自带的包管理工具 `yum` 不能帮你安装 `5.4.0` 以上的版本, ~~Ubuntu 或者 Debian 的 `apt` 却可以。~~
 
 你也可以自行为你的 CentOS 服务器升级 `gcc编译器` , 在编译 gcc编译器 的时候需要大量时间, 你可自行借助搜索引擎尝试。
 
@@ -153,10 +148,11 @@ mkdir go-cqhttp&&cd go-cqhttp
 # 创建 go-cqhttp 文件夹并将工作路径切换到这个文件夹
 
 wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.39/go-cqhttp-v0.9.39-linux-amd64.tar.gz
-# 国内源 : https://downloads.go-cqhttp.org/artifacts/go-cqhttp-linux-amd64.tar.gz
+# 可使用 github 镜像站提高境内服务器下载 github 文件的速度
+# 例如 hub.fastgit.com, gh.xcw.best, github.dihe.moe
 # 下载 go-cqhttp
 
-tar xf go-cqhttp-v0.9.34-linux-amd64.tar.gz
+tar xf go-cqhttp-v0.9.39-linux-amd64.tar.gz
 # 解压
 
 chmod +x go-cqhttp
@@ -165,8 +161,9 @@ chmod +x go-cqhttp
 ./go-cqhttp
 # 首次运行 go-cqhttp , 在当前目录下生成配置文件 config.hjson
 
-./go-cqhttp update
-# 将 go-cqhttp 升级到最新版
+# ./go-cqhttp update
+# 将 go-cqhttp 更新到最新版本
+# 不推荐
 ```
 
 ### go-cqhttp 的配置文件
@@ -263,17 +260,42 @@ vim config.hjson
 cd
 # 进入到用户文件夹
 
+mkdir pcrbot
+# 创建一个文件夹
+
+cd pcrbot
+# 将工作路径切换到这个文件夹
+
 git clone https://github.com/Ice-Cirno/HoshinoBot.git
 # clone 仓库
 
+
+```
+
+关于安装依赖 :
+
+```bash
+# 方法一: 使用 poetry ( 推荐 )
+pip3 install poetry
+# 安装 poetry
+
+wget https://pan.dihe.moe/pyproject.toml
+# 这是一份写好了的 pyproject.toml
+
+poetry install
+# 等待, 并心存希望吧
+
+# 方法二: 直接使用 pip
+pip3 install -r https://pan.dihe.moe/requirements.txt
+# 可在这个指令后加上 -i http://mirrors.aliyun.com/pypi/simple/ 切换到国内源
+```
+
+```bash
 cd HoshinoBot
-# 切换工作路径
+# 切换到 HoshinoBot 目录
 
-cp -r hoshino/config_example hoshino/config
-# 复制配置文件
-
-pip3 install -r https://di.he.cn/requirements.txt
-# 小技巧 : 在这条指令的结尾加上 -i https://pypi.tuna.tsinghua.edu.cn/simple/ 切换到境内源
+cp -r HoshinoBot/hoshino/config_example HoshinoBot/hoshino/config
+# 复制配置文件示例
 
 vim hoshino/config/__bot__.py
 # 修改配置项以自定义你的机器人, 按照中文注释填好。
@@ -286,14 +308,11 @@ vim hoshino/config/__bot__.py
 获取合成图片所需要的图包  :
 
 ```shell
-cd ~/HoshinoBot
+cd ~/pcrbot/HoshinoBot
 # 切换工作路径
 
-#↓↓↓ 境外服务器请执行 ↓↓↓
-wget https://drive.di.he.cn/res.tar.gz
+wget https://pan.dihe.moe/res.tar.gz
 # 下载静态资源
-# 境内源 : https://cn-pan.di.he.cn/hoshinobot/res.tar.gz
-# 微软, yyds ! 
 
 tar xf res.tar.gz
 # 解压静态资源
@@ -311,9 +330,8 @@ apt -y install fontconfig
 mkdir -p /usr/share/fonts/chinese
 # 创建字体文件夹
 
-wget https://drive.di.he.cn/msyh.tar.gz
+wget https://pan.dihe.moe/msyh.tar.gz
 # 下载字体
-# 国内源 : https://cn-pan.di.he.cn/hoshinobot/msyh.tar.gz
 
 tar zxvf msyh.tar.gz -C /usr/share/fonts/chinese
 # 解压到字体目录
@@ -357,11 +375,15 @@ cd ~/go-cqhttp
 screen -S hoshino
 #创建一个新的窗口用于运行 HoshinoBot
 
-cd ~/HoshinoBot
+cd ~/pcrbot/HoshinoBot
 # 切换工作路径
 
+# 运行 Hoshino:
+# ↓↓↓ 使用了 poetry 的场合 ↓↓↓
+poetry run python run.py
+
+# ↓↓↓ 直接使用 pip 的场合 ↓↓↓
 python3 run.py
-# 运行 Hoshino
 ```
 
 如果到这里为止一切正常, HoshinoBot 的控制台应该会输出类似于这样的一条日志 :
@@ -389,7 +411,7 @@ Hoshino 部分功能需要填写 apikey 后才可使用。
 将其 token 部分的 `%2b`替换为`+` , 将 `%2f` 替换为 `/` , 将 `%3d `替换为 `=` 后, 得到这样的一个字符串 : `abcdfegABCFEFG%2b123==` , 这就是你的 rss token。
 
 ```shell
-vim ~/HoshinoBot/hoshino/config/mikan.py
+vim ~/pcrbot/HoshinoBot/hoshino/config/mikan.py
 ```
 
 将它填写到 `mikan.py` 吧。
@@ -399,13 +421,13 @@ vim ~/HoshinoBot/hoshino/config/mikan.py
 编写报时文本是个体力活, 你可以使用别人编写好了的, 
 
 ```shell
-cd ~/HoshinoBot/hoshino/config
+cd ~/pcrbot/HoshinoBot/hoshino/config
 # 切换工作路径
 
 rm -f hourcall.py
 # 删除空配置文件
 
-wget https://cn-pan.di.he.cn/hoshinobot/hourcall.py
+wget https://pan.dihe.moe/hourcall.py
 # 下载报时文本
 ```
 
@@ -418,7 +440,7 @@ wget https://cn-pan.di.he.cn/hoshinobot/hourcall.py
 如果你已经具有推特开发者账号, 你可以在 [这里](https://developer.twitter.com/en/portal/apps/new) 创建一个应用, 取得应用的 `consumer_key` , `consumer_secret` , `access_token_key` , `access_token_secret` 四个参数, 并将其填入配置文件的 `twitter.py` 。
 
 ```shell
-vim ~/HoshinoBot/hoshino/config/twitter.py
+vim ~/pcrbot/HoshinoBot/hoshino/config/twitter.py
 ```
 
 #### pcrdfans 的授权 key
@@ -430,13 +452,13 @@ vim ~/HoshinoBot/hoshino/config/twitter.py
 如果你已经有了授权 key , 你可以把它填到配置文件的 priconne.py 去。
 
 ```shell
-vim ~/HoshinoBot/hoshino/config/priconne.py
+vim ~/pcrbot/HoshinoBot/hoshino/config/priconne.py
 ```
 
 #### 设置入群欢迎
 
 ```shell
-vim ~/HoshinoBot/hoshino/config/groupmaster.py
+vim ~/pcrbot/HoshinoBot/hoshino/config/groupmaster.py
 ```
 
 在 `increase_welcome` 中按照这样的格式填写 :
@@ -453,7 +475,7 @@ increase_welcome = {
 
 ### 获取 yobot
 
-两种安装 yobot 的方法。这里只写一种。<br>第二种安装方法在未来将不被支持。
+两种安装 yobot 的方法。这里只写一种。<br>第二种安装方法在未来将不被支持。~~懂的都懂。~~
 
 #### 源码运行
 
@@ -485,8 +507,9 @@ increase_welcome = {
 获取 yobot :
 
 ```shell
-cd
-# 切换工作路径到用户文件夹
+cd ~/pcrbot
+# 切换工作路径到 pcrbot 文件夹
+
 git clone https://github.com/yuudi/yobot.git
 # clone 仓库
 
@@ -495,15 +518,26 @@ cd yobot/src/client
 
 screen -S yobot
 # 创建一个新窗口用于运行 yobot 
+```
 
-python3 main.py
+```bash
+# 使用了 poetry 的场合:
+poetry run python main.py
 # 生成 yobotg.sh
+
+vim yobotg.sh
+# 修改 yobotg.sh 的第七行的 python3 main.py -g 为 poetry run python main.py -g
 
 sh yobotg.sh
 # 启动 yobot
 
-#然后, 使用组合键 Ctrl + a , d 挂起这个窗口
+# 直接使用 pip 的场合:
+python3 main.py
+
+sh yobotg.sh
 ```
+
+然后, 使用组合键 Ctrl + a , d 挂起这个窗口
 
 私聊或群聊发送 `V` 或 `ver` 或 `version` , bot 会回复 yobot 版本。
 
@@ -614,14 +648,14 @@ firewall-cmd --reload
 cd
 # 切换工作路径到用户文件夹
 
-git clone https://github.com/certbot/certbot
-# clone certbot 的仓库
+# CentOS 选手:
+yum -y install certbot
 
-cd certbot
-# 切换工作路径
+# Ubuntu, Debian 选手:
+apt -y install certbot
 
 # 请复制下面一整段命令将其粘贴到一个你喜欢的文本编辑器上, 不要用 Windows 记事本
-./certbot-auto certonly --manual \
+certbot certonly --manual \
 -d *.example.com \
 -d example.com --agree-tos \
 --manual-public-ip-logging-ok --preferred-challenges \
@@ -662,32 +696,61 @@ Before continuing, verify the record is deployed.
 server {
   listen 80;
   listen [::]:80;
- 
-   listen 443 ssl http2;
-   listen [::]:443 ssl http2;
-   ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
-   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
- 
   server_name example.com;
- 
+  rewrite ^(.*)$ https://$server_name$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  
+  ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+  ssl_ciphers 'AES128+EECDH:AES128+EDH:!aNULL';
+
+  ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_session_cache shared:SSL:10m;
+
+  resolver 8.8.4.4 8.8.8.8 valid=300s;
+  resolver_timeout 10s;
+
+  ssl_prefer_server_ciphers on;
+  # ssl_dhparam /etc/letsencrypt/live/dhparam.pem;
+
+  add_header Strict-Transport-Security max-age=63072000;
+  add_header X-Frame-Options DENY;
+  add_header X-Content-Type-Options nosniff;
+
+  server_name example.com;
+
+  if ($http_user_agent ~* "qihoobot|Baiduspider|Googlebot|Googlebot-Mobile|Googlebot-Image|Mediapartners-Google|Adsbot-Google|Feedfetcher-Google|Yahoo! Slurp|Yahoo! Slurp China|YoudaoBot|Sosospider|Sogou spider|Sogou web spider|MSNBot|ia_archiver|Tomato Bot")
+    {
+      return 403;
+    }
+  
   location /
   {
     proxy_pass http://localhost:9222;
     proxy_set_header X-Real-IP $remote_addr;
   }
- 
+
   location /yobot/assets/ {
-    alias /root/yobot/src/client/public/static/; 
+    alias ~/pcrbot/yobot/src/client/public/static/; 
     expires 30d;
   }
- 
+  
   location /yobot/output/ {
-    alias /root/yobot/src/client/yobot_data/output/;
+    alias ~/pcrbot/yobot/src/client/yobot_data/output/;
     charset utf-8;
     expires 30d;
   }
-  location /ws/ {
-    deny all;
+
+  error_page   500 502 503 504  /50x.html;
+  location = /50x.html {
+      root   html;
   }
 }
 ```
@@ -711,7 +774,7 @@ nginx -s reload
 修改 yobot 的配置文件
 
 ```shell
-vim ~/yobot/src/client/yobot_data/yobot_config.json
+vim ~/pcrbot/yobot/src/client/yobot_data/yobot_config.json
 
 # public_adress 字段的值修改为 https://example.com/
 
@@ -727,7 +790,7 @@ vim ~/yobot/src/client/yobot_data/yobot_config.json
 修改 yobot 的配置文件, 仅允许本机监听
 
 ```shell
-vim ~/yobot/src/client/yobot_data/yobot_config.json
+vim ~/pcrbot/yobot/src/client/yobot_data/yobot_config.json
 # HOST 字段的值修改为 127.0.0.1
 # 如果你没有做好反向代理的工作, 请不要修改 !
 ```
@@ -819,9 +882,8 @@ bot 会主动联系你 ( 笑 ) 。
 默认你已经装好了 nginx , 且未改变过默认配置 ( 如果你在浏览器中访问 <http://你服务器的 ip 地址> 是 nginx 的欢迎页面, 说明你的设置是没问题的 )
 
 ```shell
-wget https://drive.di.he.cn/res.tar.gz
+wget https://pan.dihe.moe/res.tar.gz
 # 下载
-# 境内源 : wget https://cn-pan.di.he.cn/hoshinobot/res.tar.gz
 
 tar xf res.tar.gz
 # 解压
