@@ -93,11 +93,15 @@ author: 地河君_official
 yum -y update
 yum -y groupinstall "Development tools"
 yum -y install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc* libffi-devel make git vim screen
+# 如果你正在使用 ARM 架构的服务器, 请额外执行 yum -y install xz-devel
+# 如果你不明白上面这句话, 直接无视掉
 
 # Debian 、Ubuntu 用户请执行
 apt -y update
 apt -y install build-essential
 apt -y install -y make libssl-dev zlib1g-dev libbz2-dev libpcre3 libpcre3-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libperl-dev libncursesw5-dev xz-utils tk-dev zlib1g libffi-dev liblzma-dev screen git vim openssl gcc
+# 如果你正在使用 ARM 架构的服务器, 请额外执行 apt -y install liblzma-dev
+# 如果你不明白上面这句话, 直接无视掉
 ```
 
 ### 安装 Python3.9
@@ -138,7 +142,7 @@ pip3 install --upgrade pip
 
 ### 获取 go-cqhttp
 
-go-cqhttp 是使用 go 语言对 cqhttp 协议重新实现, 并实现了很多原版 cq-http 没有实现的 api 。<br>四酱老婆好棒！
+go-cqhttp 是使用 go 语言对 cqhttp 协议重新实现, 并实现了很多原版 cq-http 没有实现的 api 。
 
 ```shell
 cd
@@ -147,44 +151,30 @@ cd
 mkdir go-cqhttp&&cd go-cqhttp
 # 创建 go-cqhttp 文件夹并将工作路径切换到这个文件夹
 
-wget https://github.com/Mrs4s/go-cqhttp/releases/download/v0.9.39/go-cqhttp-v0.9.39-linux-amd64.tar.gz
+wget https://github.com/Mrs4s/go-cqhttp/releases/download/v1.0.0-beta4/go-cqhttp_linux_amd64.tar.gz
 # 可使用 github 镜像站提高境内服务器下载 github 文件的速度
-# 例如 hub.fastgit.com, gh.xcw.best, github.dihe.moe
+# 例如 hub.fastgit.com, github.dihe.moe
 # 下载 go-cqhttp
 
-tar xf go-cqhttp-v0.9.39-linux-amd64.tar.gz
+tar xf go-cqhttp_linux_amd64.tar.gz
 # 解压
 
 chmod +x go-cqhttp
 # 给 go-cqhttp 执行权限
 
 ./go-cqhttp
-# 首次运行 go-cqhttp , 在当前目录下生成配置文件 config.hjson
-
-# ./go-cqhttp update
-# 将 go-cqhttp 更新到最新版本
-# 不推荐
+# 首次运行 go-cqhttp , 在当前目录下生成配置文件 config.yml
 ```
 
 ### go-cqhttp 的配置文件
 
-config.hjson :
+config.yml:
 
-hjson 支持注释, 生成的 config.hjson 有非常详细的注释, 此处不再赘述。注意账号密码需填写准确。
+请先填写好要作为机器人登录的账号, **暂先不填密码。**
 
-go-cqhttp 使用明文储存密码, 如果你遇到了困难需要向他人, 请注意截图不要截这一部分。
+配置文件有详细注释, 此处省略。
 
-另外, 还推荐修改一处配置项 :
-
-```json
-{
-    force_fragmented: true
-}
-```
-
-此处修改是打开强制分片发送消息, 分片发送将会带来更快的速度以及减少一部分腾讯对机器人消息的风控。
-
-稍后, 你会成功登陆, 当前目录还会生成一个名为 device.json 的文件, 它保存的是登陆设备的信息 :
+成功登录后还会生成一个名为 device.json 的文件, 它保存的是登陆设备的信息 :
 
 ```json
 {
@@ -199,9 +189,9 @@ go-cqhttp 使用明文储存密码, 如果你遇到了困难需要向他人, 请
 
 当设备种类设定为 iPad 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用 QQ HD 登录。<br>~~呜呜呜, 年轻人的第一台 iPad。~~
 
-当设备种类设定为 Android 手机 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用手机 QQ 登录。
+当设备种类设定为 iPhone 手机 时, 功能无限制。此时, 用于部署 bot 的账号不能在别的设备上用手机 QQ 登录。
 
-当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。~~此时, 用于部署 bot 的账号不能在 Android 手表上登录。~~ ( 所以真的有人用手表吗, 别吧 )
+当设备种类设定为 Android 手表 时, bot 无法接收 `group_notify` 事件、无法接收口令红包信息, 也无法收取消息撤回时间。
 
 ### 配置 go-cqhttp 反向 ws 配置
 
@@ -214,38 +204,34 @@ go-cqhttp 使用明文储存密码, 如果你遇到了困难需要向他人, 请
 你可以使用 vim 编辑器编辑配置文件 :
 
 ```shell
-vim config.hjson
+vim config.yml
 # 不了解 vim 编辑器的速速去了解先
 ```
 
-找到 `ws_reverse_servers` 部分, 将其修改为 :
+找到 `servers` 部分, 将其修改为 :
 
-```json
-{
-    ws_reverse_servers: [
-        {
-            enabled: true
-            reverse_url: ws://127.0.0.1:8080/ws/
-            reverse_api_url: ""
-            reverse_event_url: ""
-            reverse_reconnect_interval: 3000
-        }
-    ]
-}
+```yml
+servers:
+  - ws-reverse:
+      universal: ws://127.0.0.1:8080/ws/
+      api: ''
+      event: ''
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default
 ```
 
 或者 :
 
-```json
-    ws_reverse_servers: [
-        {
-            enabled: true
-            reverse_url: ""
-            reverse_api_url: ws://127.0.0.1:8080/ws/api/
-            reverse_event_url: ws://127.0.0.1:8080/ws/event/
-            reverse_reconnect_interval: 3000
-        }
-    ]
+```yml
+servers:
+  - ws-reverse:
+      universal: ''
+      api: ws://127.0.0.1:8080/ws/api/
+      event: ws://127.0.0.1:8080/ws/event/
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default
 ```
 
 两种都是正确的, 任意一种即可。
@@ -268,8 +254,6 @@ cd pcrbot
 
 git clone https://github.com/Ice-Cirno/HoshinoBot.git
 # clone 仓库
-
-
 ```
 
 关于安装依赖 :
@@ -294,7 +278,7 @@ pip3 install -r https://pan.dihe.moe/requirements.txt
 cd HoshinoBot
 # 切换到 HoshinoBot 目录
 
-cp -r HoshinoBot/hoshino/config_example HoshinoBot/hoshino/config
+cp -r hoshino/config_example hoshino/config
 # 复制配置文件示例
 
 vim hoshino/config/__bot__.py
@@ -356,17 +340,12 @@ cd ~/go-cqhttp
 ./go-cqhttp
 # 运行 go-cqhttp 
 
-# 可能需要异地登录验证, 可能需要滑块验证
-# 滑块验证请看 : https://docs.go-cqhttp.org/faq/slider.html
-
-# 验证可能有点阴间, 请不要放弃
-
-# 验证成功之后, 使用 ./go-cqhttp 这个命令来启动 go-cqhttp, 账号会开始登陆
+# 需要扫码验证登录, 需要先在移动端登录你在配置文件中填写的 bot 的 qq 账号, 然后扫码
 
 # 有极低概率获取到无效的登陆地址而导致登陆失败, 重试即可解决
 
 # 成功登陆后, go-cqhttp 会尝试连接到 Websocket Universal 服务器 ws://127.0.0.1:8080/ws/ 
-# 你现在的 8080 端口上还没有运行 HoshinoBot , 所以会连接不上, 看到连接不上的提示不要慌, 使用组合键 Ctrl + a ,d 挂起这个窗口
+# 此时应该会提示链接出错 ( 因为 HoshinoBot 还没有运行 ), 暂先不管, 直接使用组合键 Ctrl + a ,d 挂起这个窗口
 ```
 
 2, 启动 `HoshinoBot` :
@@ -395,6 +374,24 @@ python3 run.py
 然后, 使用组合键 Ctrl + a ,d 挂起这个窗口。
 
 恭喜 ! 你成功搭建了 HoshinoBot , 现在立刻在群里 艾特 你的 bot 并发送一句 `kkp` 吧 !
+
+### 解决 Hoshino 启动时的 Warning
+
+你启动的时候看到诸如此类的警告信息:
+
+```yml
+[2021-06-11 00:38:55,020 config] WARNING: Not found config of "xxx"
+```
+
+你可以无视掉它, 不解决这个问题不会有任何影响, 但下一次启动时你仍然会看到这个警告。
+
+这个警告的字面意思是没有找到某个模块的配置文件, 在 HoshinoBot 的 config 文件夹创建对应模块的空配置文件即可。
+
+```bash
+touch ~/pcrbot/HoshinoBot/hoshino/config/xxx.py
+```
+
+xxx 替换成你在控制台看到的, 缺少配置文件的模块。
 
 ### Hoshino 的 api key
 
@@ -483,25 +480,21 @@ increase_welcome = {
 
 
 ```json
-{
-	ws_reverse_servers: [
-        {
-            enabled: true
-            reverse_url: ws://127.0.0.1:8080/ws/
-            reverse_api_url: ""
-            reverse_event_url: ""
-            reverse_reconnect_interval: 3000
-        }
-
-        {
-            enabled: true
-            reverse_url: ws://127.0.0.1:9222/ws/
-            reverse_api_url: ""
-            reverse_event_url: ""
-            reverse_reconnect_interval: 3000
-        }
-    ]
-}
+servers:
+  - ws-reverse:
+      universal: ws://127.0.0.1:8080/ws/
+      api: ''
+      event: ''
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default
+  - ws-reverse:
+      universal: ws://127.0.0.1:9222/ws/
+      api: ''
+      event: ''
+      reconnect-interval: 3000
+      middlewares:
+        <<: *default
 ```
 
 获取 yobot :
@@ -863,7 +856,19 @@ yarn start
 # 启动 cqps
 ```
 
-注 : cqps 使用正向 ws 的通信方式, 默认端口和 go-cqhttp 的正向 ws 默认端口一致, 如果没更改过 cqps 的配置文件中的 `port` 字段, 则这样就算完成 cqps 的部署。
+#### 配置正向 ws
+
+修改 `~/go-cqhttp/config.yml` , 在 `servers` 里添加以下内容
+
+```yml
+  - ws:
+      host: 127.0.0.1
+      port: 6700
+      middlewares:
+        <<: *default
+```
+
+重启 go-cqhttp
 
 #### 验证安装
 
