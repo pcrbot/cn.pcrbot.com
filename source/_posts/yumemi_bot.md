@@ -1,6 +1,8 @@
 ---
 title: yumemi_bot
 author: Dc_Yuki
+cover: /images/banner-kasumi.jpg
+date: 2021-7-7T12:00:00.000Z
 ---
 
 ## 前言
