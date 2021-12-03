@@ -2,7 +2,7 @@
 title: CentOS 下安装 HoshinoBot 和 yobot
 author: 7loli
 date: 2021-12-02 17:00:00
-cover: /images/banner-pudding.jpg
+cover: /images/banner-suzuna.jpg
 ---
 
 ## 1 创建纯净版的 centos 7.6 服务器
@@ -50,11 +50,11 @@ cd Python-3.7.1
 
 make&&make install
 
-/usr/local/bin/pip3 install --upgrade pip
+pip3 install --upgrade pip
 ```
 
 ## 3 安装 go-cqhttp
-```
+```bash
 # 创建并进入 go-cqhttp 目录
 cd ~&&mkdir go-cqhttp&&cd go-cqhttp
 # 下载最新版的压缩包
@@ -154,7 +154,7 @@ servers:
 
 ## 4 安装 HoshinoBot
 
-```
+```bash
 cd ~
 
 git clone https://github.com/Ice-Cirno/HoshinoBot.git
