@@ -2,7 +2,7 @@
 title: CentOS 下安装 HoshinoBot 和 yobot
 author: 7loli
 date: 2021-12-02 17:00:00
-cover: /images/banner-suzuna.jpg
+cover: /images/banner-pudding.jpg
 ---
 
 ## 1 创建纯净版的 centos 7.6 服务器
@@ -21,9 +21,9 @@ cover: /images/banner-suzuna.jpg
 * 其他默认，勾选同意协议-免费试用
 * 创建完成后跳转管理控制台，选择远程连接
 
-> 后续找不到控制台入口的话，[点击这里](https://homenew.console.aliyun.com/home/dashboard/ProductAndService)并搜索 ECS，会弹出云服务器ECS控制台入口。
+后续找不到控制台入口的话，[点击这里](https://homenew.console.aliyun.com/home/dashboard/ProductAndService)并搜索 ECS，会弹出云服务器ECS控制台入口。
 
->~~新版的远程连接简直反人类：~~左侧边栏选择 实例与镜像-实例 ，在实例最右侧 操作-更多-密码/密钥-重置实例密码，然后重启实例后：操作-远程连接-Workbench远程连接-立即登录，输入重置的密码即可跳转至控制页面。
+~~新版的远程连接简直反人类：~~ 左侧边栏选择 实例与镜像-实例 ，在实例最右侧 操作-更多-密码/密钥-重置实例密码，然后重启实例后：操作-远程连接-Workbench远程连接-立即登录，输入重置的密码即可跳转至控制页面。
 
 ## 2 系统变量配置
 如果已有 centos 7.6 服务器，只需要下面这些简洁的命令行，**按步骤一条一条的** 复制粘贴回车即可，# 开头为注释部分不需要复制。
@@ -34,6 +34,8 @@ yum -y update
 yum -y groupinstall "Development tools"
 
 yum -y install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc* libffi-devel make git vim screen
+# ffmpeg 为发图片必备组件
+yum install ffmpeg ffmpeg-devel
 ```
 
 ### 2.2 安装 python3
@@ -54,6 +56,10 @@ pip3 install --upgrade pip
 ```
 
 ## 3 安装 go-cqhttp
+go-cqhttp 只负责模拟登录 QQ 收发消息，消息处理逻辑则由 **yobot** 和 **HoshinoBot** 决定。
+
+此教程下的 yobot 和 HoshinoBot 是分离的，即可以根据需求 **只安装 yobot 或 HoshinoBot** 。
+
 ```bash
 # 创建并进入 go-cqhttp 目录
 cd ~&&mkdir go-cqhttp&&cd go-cqhttp
@@ -129,7 +135,8 @@ database:
     video: data/video.db
 
 servers:
-  # 反向WS设置，8080 为 HoshinoBot 默认端口号
+  # 反向WS设置
+  # 8080 为 HoshinoBot 默认端口号
   - ws-reverse:
       universal: ws://127.0.0.1:8080/ws/
       api: ""
@@ -137,7 +144,7 @@ servers:
       reconnect-interval: 3000
       middlewares:
         <<: *default # 引用默认中间件
-    # 为后续安装 yobot 做准备，增加 yobot 默认端口号 9222
+  # 9222 为 yobot 默认端口号
   - ws-reverse:
       universal: ws://127.0.0.1:9222/ws/
       api: ""
@@ -148,7 +155,9 @@ servers:
 ```
 **单击 ESC后，英文模式下按住 `shift` + `:` ，输入 `wq` ，回车即可完成保存**
 
-修改完相应的账号密码，输入 `nohup ./go-cqhttp &` 即可后台运行 go-cqhttp
+修改完相应的账号密码，输入 `nohup ./go-cqhttp &` 即可后台运行 go-cqhttp，默认输出日志文件为工作目录下的 `nohup.out` 。
+
+初次使用 go-cqhttp 时，可能会由于异地登录等问题无法群发消息或图片，在服务器上放置一段时间即可（至少七天以上？）。
 
 **新版已实现验证码登录，记得把命令行界面调大点不然显示不全**
 
@@ -165,23 +174,22 @@ pip3 install -r requirements.txt
 
 cp -r hoshino/config_example/ hoshino/config/
 
-# 这一步启用或关闭的模组
+# 这一步启用或关闭模组
 vi hoshino/config/__bot__.py
 
 # 后台运行 HoshinoBot
 nohup python3 run.py &
 ```
 
-初次使用 go-cqhttp 时，可能会由于异地登录等问题无法群发消息或图片，在服务器上放置一段时间即可（至少七天以上？）
-
 程序运行后生成的数据库和配置文件处于 `~/.hoshino/service_config/` 下
 
 更多的 HoshinoBot 模组，[点击查看 HoshinoBot 作品索引](https://github.com/pcrbot/HoshinoBot-plugins-index)
 
 
-## 5 整合 yobot
+## 5 安装 yobot
 
 ### 5.1 下载并安装 yobot
+yobot 可独立进行安装，不依赖于 HoshinoBot，注意配置好步骤 3 中的反向 ws 端口号即可（默认为9222）。
 
 ```bash
 cd ~
