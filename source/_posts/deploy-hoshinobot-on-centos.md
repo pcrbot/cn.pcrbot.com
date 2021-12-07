@@ -25,6 +25,7 @@ cover: /images/banner-pudding.jpg
 
 ~~新版的远程连接简直反人类：~~ 左侧边栏选择 实例与镜像-实例 ，在实例最右侧 操作-更多-密码/密钥-重置实例密码，然后重启实例后：操作-远程连接-Workbench远程连接-立即登录，输入重置的密码即可跳转至控制页面。
 
+
 ## 2 系统变量配置
 如果已有 centos 7.6 服务器，只需要下面这些简洁的命令行，**按步骤一条一条的** 复制粘贴回车即可，# 开头为注释部分不需要复制。
 ### 2.1 更新系统环境
@@ -36,6 +37,7 @@ yum -y groupinstall "Development tools"
 yum -y install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc* libffi-devel make git vim screen
 # ffmpeg 为发图片必备组件
 yum install ffmpeg ffmpeg-devel
+
 ```
 
 ### 2.2 安装 python3
@@ -61,6 +63,11 @@ go-cqhttp 只负责模拟登录 QQ 收发消息，消息处理逻辑则由 **yob
 此教程下的 yobot 和 HoshinoBot 是分离的，即可以根据需求 **只安装 yobot 或 HoshinoBot** 。
 
 ```bash
+/usr/local/bin/pip3 install --upgrade pip
+```
+
+## 3 安装 go-cqhttp
+```
 # 创建并进入 go-cqhttp 目录
 cd ~&&mkdir go-cqhttp&&cd go-cqhttp
 # 下载最新版的压缩包
@@ -164,6 +171,7 @@ servers:
 ## 4 安装 HoshinoBot
 
 ```bash
+
 cd ~
 
 git clone https://github.com/Ice-Cirno/HoshinoBot.git
@@ -190,6 +198,7 @@ nohup python3 run.py &
 
 ### 5.1 下载并安装 yobot
 yobot 可独立进行安装，不依赖于 HoshinoBot，注意配置好步骤 3 中的反向 ws 端口号即可（默认为9222）。
+
 
 ```bash
 cd ~
