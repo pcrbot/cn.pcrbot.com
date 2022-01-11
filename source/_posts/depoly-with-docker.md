@@ -4,6 +4,8 @@ date: 2020-11-08T12:00:00.000Z
 cover: /images/banner-shizuru.jpg
 ---
 
+注意：本文旨在帮助希望使用 docker 的搭建者，如果你并不熟悉使用 docker，请参考其他教程
+
 ## 前言
 
 ### 什么是 Docker
