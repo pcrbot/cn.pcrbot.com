@@ -2,8 +2,11 @@ name: build-hexo
 
 on: [push]
 
-jobs:
+jobs:  
   build:
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     name: auto deploy
     steps:
@@ -12,26 +15,29 @@ jobs:
         with:
           submodules: true # Checkout private submodules(themes or something else).
 
-      # Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)
       - name: Cache node modules
         uses: actions/cache@v1
         id: cache
         with:
-          path: node_modules
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      # Deploy hexo blog website.
-      - name: Deploy
-        id: deploy
-        uses: sma11black/hexo-action@v1.0.2
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-      # Use the output from the `deploy` step(use for test action)
-      - name: Get the output
-        run: |
-          echo "${{ steps.deploy.outputs.notify }}"
+          path: ./public
+
+      - name: Deploy to Github-Pages
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact_name: github-pages
+
