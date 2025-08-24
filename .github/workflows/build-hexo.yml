@@ -1,22 +1,29 @@
 name: build-hexo
 
-on: [push]
+on:
+  - push
+  - workflow_dispatch
 
-jobs:  
+jobs:
   build:
     permissions:
+      contents: read
       pages: write
       id-token: write
     runs-on: ubuntu-latest
-    name: auto deploy
+    name: deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
-          submodules: true # Checkout private submodules(themes or something else).
+          submodules: true # Themes are submodules
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Cache node modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         id: cache
         with:
           path: ~/.npm
@@ -31,13 +38,11 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
       - name: Deploy to Github-Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifact_name: github-pages
-

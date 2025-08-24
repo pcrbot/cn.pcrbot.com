@@ -89,9 +89,9 @@ pagination_dir: page
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
-ignore:
+# include:
+# exclude:
+# ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
@@ -139,3 +139,5 @@ deploy:
   repo: git@github.com:pcrbot/www.pcrbot.com.git
   branch: gh-pages
   message: "auto deploy {{ now('YYYY-MM-DD HH:mm:ss') }}"
+
+all_minifier: true
