@@ -80,7 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         for (let i = 0; i < 4; i++) {
                             const now = new Date().getTime();
                             try {
-                                await fetch(url, { method: 'GET', mode: 'no-cors' });
+                                await Promise.race([
+                                    fetch(url, { method: 'GET', mode: 'no-cors' }),
+                                    new Promise((resolve, reject) => setTimeout(reject, 5000)), // timeout after 5 seconds
+                                ]);
                                 const latency = new Date().getTime() - now;
                                 const indicator = latency < 200 ? '🟢' : '🟡';
                                 element.textContent += ` ${indicator} ${latency}ms`;
